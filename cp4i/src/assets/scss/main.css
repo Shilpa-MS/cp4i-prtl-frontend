@@ -5996,10 +5996,13 @@ body header.sticky .navbar-brand {
 	z-index: 999;
 }
 body header.sticky .navbar-brand h1 {
-	font-size: 35px;
+	font-size: 30px;
+}
+body header.sticky .navbar-brand h2 {
+	font-size: 30px;
 }
 body header.sticky .navbar-brand span {
-	font-size: 8px;
+	font-size: 30px;
 }
 body .navbar {
 	margin-bottom: 0px;
@@ -6015,19 +6018,27 @@ body .navbar-brand {
 	height: 100px;
 }
 body .navbar-brand h1 {
-	font-family: Verdana, Georgia, Serif;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 	text-transform: uppercase;
 	font-weight: 700;
 	margin-top: 0px;
-	color: #272930;
-	font-size: 45px;
+	
+	font-size: 30px;
 	margin-bottom: 0px;
+}
+body .navbar-brand h2 {
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	color: #272930;
+	font-weight: 700;
+	text-transform: uppercase;
+	font-size: 30px;
 }
 body .navbar-brand span {
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-	letter-spacing: 3px;
+	color: #159EEF;
+	font-weight: 700;
 	text-transform: uppercase;
-	font-size: 12px;
+	font-size: 30px;
 }
 body .navbar-inverse .navbar-nav > li > a {
 	color: #333333;
