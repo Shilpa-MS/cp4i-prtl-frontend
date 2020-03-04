@@ -5999,10 +5999,10 @@ body header.sticky .navbar-brand h1 {
 	font-size: 30px;
 }
 body header.sticky .navbar-brand h2 {
-	font-size: 30px;
+	font-size: 25px;
 }
 body header.sticky .navbar-brand span {
-	font-size: 30px;
+	font-size: 15px;
 }
 body .navbar {
 	margin-bottom: 0px;
@@ -6031,14 +6031,17 @@ body .navbar-brand h2 {
 	color: #272930;
 	font-weight: 700;
 	text-transform: uppercase;
-	font-size: 30px;
+	font-size: 25px;
+	margin-top: 0px;
+	margin-bottom: 0px;
+	
 }
 body .navbar-brand span {
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 	color: #159EEF;
 	font-weight: 700;
-	text-transform: uppercase;
-	font-size: 30px;
+	text-transform: lowercase;
+	font-size: 15px;
 }
 body .navbar-inverse .navbar-nav > li > a {
 	color: #333333;
