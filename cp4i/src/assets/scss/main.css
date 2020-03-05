@@ -6140,8 +6140,8 @@ body #myCarousel .item {
 	z-index: 1;
 }
 body #myCarousel .item:before {
-	opacity: .7;
-	content: "";
+	opacity: .1;
+	 content: ""; 
 	position: absolute;
 	top: 0;
 	bottom: 0;
