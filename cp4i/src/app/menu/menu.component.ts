@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
+import { MenumasterService } from '../services/menumaster.service';
 
 @Component({
   selector: 'app-menu',
@@ -9,11 +10,17 @@ import { AuthService } from '../services/auth.service';
 export class MenuComponent implements OnInit {
 
   user:string=null;
-  constructor(private authService:AuthService) {
-    this.user = this.authService.getUser();
+  constructor(private MenumasterService:MenumasterService) {
+   //this.user = this.authService.getUser();
    }
 
   ngOnInit() {
   }
+
+  logout(){
+    localStorage.removeItem('user');
+    this.MenumasterService.setNewUser("");
+  
+}
 
 }

@@ -13,30 +13,38 @@
                             <i class="fa fa-pencil"></i>
                         </div>
                     </div>
-                    <div class="form-bottom">
-                        <form role="form" action="" class="login-form">
+                    <div class="form-bottom"><!-- <form  [formGroup]="loginForm" class="form-horizontal"></form> -->
+                        <form [formGroup]="registrationForm" class="form-horizontal">
+
+
                             <div class="input-group form-group">
                                 <span class="input-group-addon" id="basic-addon1"><i class="fa fa-user"></i></span>
-                                <input type="text" class="form-control" placeholder="First Name" aria-describedby="basic-addon1">
-                            </div>
-                            <div class="input-group form-group">
-                                <span class="input-group-addon" id="basic-addon1"><i class="fa fa-user"></i></span>
-                                <input type="text" class="form-control" placeholder="Last Name" aria-describedby="basic-addon1">
+                                <input type="text" class="form-control" placeholder="User's Name" aria-describedby="basic-addon1"
+                                formControlName="username">
                             </div>
                             <div class="input-group form-group">
                                 <span class="input-group-addon" id="basic-addon1"><i class="fa fa-envelope"></i></span>
-                                <input type="text" class="form-control" placeholder="Email" aria-describedby="basic-addon1">
+                                <input type="text" class="form-control" placeholder="Email" aria-describedby="basic-addon1"
+                                formControlName="email">
                             </div>
                             <div class="input-group form-group">
                                 <span class="input-group-addon" id="basic-addon1"><i class="fa fa-phone"></i></span>
-                                <input type="tel" class="form-control" placeholder="Phone No." aria-describedby="basic-addon1">
+                                <input type="tel" class="form-control" placeholder="Company Name" aria-describedby="basic-addon1"
+                                formControlName="companyname">
                             </div>
                             <div class="input-group form-group">
-
-                                <textarea rows="4" cols="70" class="form-control" placeholder="Message"></textarea>
+                                <span class="input-group-addon" id="basic-addon1"><i class="fa fa-phone"></i></span>
+                                <input type="tel" class="form-control" placeholder="Designation" aria-describedby="basic-addon1" 
+                                formControlName="designation">
+                               <!--  <textarea rows="4" cols="70" class="form-control" placeholder="Message"></textarea> -->
 
                             </div>
-                            <button type="submit" class="btn btn-primary">Sign me up!</button>
+                            <div class="input-group form-group">
+                                    <span class="input-group-addon" id="basic-addon1"><i class="fa fa-phone"></i></span>
+                                    <input type="tel" class="form-control" placeholder="Password" aria-describedby="basic-addon1"
+                                    formControlName="password">
+                                </div>
+                            <button type="submit" class="btn btn-primary" (click)="registration(registrationForm.value)">Sign me up!</button>
                         </form>
                     </div>
                 </div>
@@ -54,17 +62,19 @@
                             <i class="fa fa-key"></i>
                         </div>
                     </div>
-                    <div class="form-bottom">
-                        <form role="form" action="" class="login-form">
+                    <div class="form-bottom"><!-- <form  [formGroup]="registrationForm" class="form-horizontal"> -->
+                        <form  [formGroup]="loginForm" class="form-horizontal">
                             <div class="input-group form-group">
                                 <span class="input-group-addon" id="basic-addon1"><i class="fa fa-user"></i></span>
-                                <input type="text" name="user" [(ngModel)]="user" class="form-control" placeholder="Username" aria-describedby="basic-addon1">
+                                <input type="text" name="user"  class="form-control" placeholder="Username" aria-describedby="basic-addon1"
+                                formControlName="usernamel"><!-- [(ngModel)]="user" -->
                             </div>
                             <div class="input-group form-group">
                                 <span class="input-group-addon" id="basic-addon1"><i class="fa fa-unlock"></i></span>
-                                <input type="password" name="password" [(ngModel)]="password" class="form-control" placeholder="Password" aria-describedby="basic-addon1">
+                                <input type="password" name="password"  class="form-control" placeholder="Password" aria-describedby="basic-addon1"
+                                formControlName="passwordl"><!-- [(ngModel)]="password" -->
                             </div>
-                            <button type="submit" (click)="login()" class="btn">Sign in!</button>
+                            <button type="submit" (click)="login(loginForm.value)" class="btn">Sign in!</button>
                         </form>
                     </div>
                 </div>
