@@ -9,7 +9,7 @@ import { AuthService } from '../services/auth.service';
 export class HeaderComponent implements OnInit {
 
   user:string=null;
-  constructor(private authService:AuthService) {
+  constructor(public authService:AuthService) {
     
    }
 
