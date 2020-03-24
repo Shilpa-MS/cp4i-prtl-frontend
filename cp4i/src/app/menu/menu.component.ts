@@ -10,7 +10,7 @@ import { MenumasterService } from '../services/menumaster.service';
 export class MenuComponent implements OnInit {
 
   user:string=null;
-  constructor(private MenumasterService:MenumasterService) {
+  constructor(public MenumasterService:MenumasterService) {
    //this.user = this.authService.getUser();
    }
 
