@@ -24,7 +24,7 @@ app.use(bodyParser.json());
 
 
 //enable CORS
-app.use(cors({credentials: false, origin: UI_BASE_URL}));
+app.use(cors({credentials: true, origin: UI_BASE_URL}));
 
 app.use(cors());
 app.use(function(req, res, next) {
