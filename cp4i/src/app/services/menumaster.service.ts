@@ -10,7 +10,8 @@ const httpOptions = {
 })
 export class MenumasterService {
 
-  API_URL = "http://localhost:4201/api/jumpstat";
+  API_URL = "http://localhost:6020/api/jumpstat";
+  
   existing_appid : string;
   user_mail: string;
  

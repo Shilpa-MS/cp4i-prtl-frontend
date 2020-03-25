@@ -13,6 +13,7 @@ var   f = require('util').format;
 var   fs = require('fs');
 var dateFormat = require('dateformat');
 var ObjectId = require('mongodb').ObjectID;
+var mongoose = require('mongoose');
 
 var app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -71,9 +72,9 @@ if (appEnv.isLocal) {
         .catch(function (reason) {
             console.log('Unable to connect to the mongodb instance. Error: ', reason);
         });
-    sessionDB = process.env.MONGODB_URL;
+    //sessionDB = process.env.MONGODB_URL;
     console.log('Your MongoDB is running at ' + process.env.MONGODB_URL);
-	//var sessionDB = 'mongodb://localhost:27017/'
+	var sessionDB = 'mongodb://localhost:27017/'
 	console.log(sessionDB);;
 	dbUrl = sessionDB ; // please change it to env variable
 }

@@ -24,6 +24,7 @@
     "express": "^4.15.x",
     "http": "0.0.0",
     "mongodb": "^2.2.33",
+    "mongoose": "^5.2.4",
     "q": "^1.4.1"
   },
   "author": "IBM Corp",
