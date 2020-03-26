@@ -16,6 +16,7 @@ var ObjectId = require('mongodb').ObjectID;
 var mongoose = require('mongoose');
 
 var app = express();
+var cors = require('cors');
 app.use(bodyParser.urlencoded({ extended: true }));
 /* this is been added for git changes */
 app.use(bodyParser.json());
