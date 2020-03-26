@@ -54,8 +54,14 @@ export class SignInComponent implements OnInit {
       alert("Wrong UserName/Password");
     } */
     this.menuService.UserAuthenticate(formvalue).subscribe((data: any) => {
+		  if(data.status== '200'){
+		  console.log("inside if");
+	  alert(data.message,"hello");
+	  }
       console.log(data," data");
       this.loginData = data.xuser[0];
+	  console.log("this.loginData ",this.loginData);
+	
       console.log("application data is",this.loginData);
       console.log("newUserFlag2222",this.loginData.email);
       this.menuService.setNewUser(this.loginData.email);
@@ -63,6 +69,8 @@ export class SignInComponent implements OnInit {
       this.menuService.setUserappId(this.loginData.app_id);
       this.router.navigate(['/home']);
       this.loginForm.reset();
+	  
+	  
     });
   }
   registration(regFormValue){
@@ -71,6 +79,7 @@ export class SignInComponent implements OnInit {
 
     this.menuService.JumpstartfetchUserData(regFormValue.email).subscribe((data: any) => {
       console.log("hhihioio",regFormValue.email,data,data.length);
+	  
       if(data.length <= 0 )
       {
         this.menuService.JumpstartUserRegister(regFormValue).subscribe((data: any) => {
