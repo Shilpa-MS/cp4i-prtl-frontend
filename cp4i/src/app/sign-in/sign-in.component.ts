@@ -56,11 +56,11 @@ export class SignInComponent implements OnInit {
     this.menuService.UserAuthenticate(formvalue).subscribe((data: any) => {
 		  if(data.status== '200'){
 		  console.log("inside if");
-	  alert(data.message);
+	    //alert(data.message);
 	  }
       console.log(data," data");
       this.loginData = data.xuser[0];
-	  console.log("this.loginData ",this.loginData);
+	   console.log("this.loginData ",this.loginData);
 	
       console.log("application data is",this.loginData);
       console.log("newUserFlag2222",this.loginData.email);
