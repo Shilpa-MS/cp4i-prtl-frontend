@@ -10,8 +10,8 @@ const httpOptions = {
 })
 export class MenumasterService {
 
-  API_URL = "http://localhost:6020/api/jumpstat";
-  //API_URL = "https://cp4i-prtl-backend.mybluemix.net/api/jumpstat";
+  //API_URL = "http://localhost:6020/api/jumpstat";
+  API_URL = "https://cp4i-prtl-backend.mybluemix.net/api/jumpstat";
   
   existing_appid : string;
   user_mail: string;
