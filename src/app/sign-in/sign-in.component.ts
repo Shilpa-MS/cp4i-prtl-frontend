@@ -30,7 +30,7 @@ export class SignInComponent implements OnInit {
     this.registrationForm = this.fb.group(
       {
         'username': [null, Validators.required],
-        'email': [null, Validators.required],
+        'email': [null, Validators.compose([Validators.required, Validators.pattern("[^ @]*@[^ @]*")])],
         'companyname': [null, Validators.required],
         'designation': [null, Validators.required],
         'password': [null, Validators.required]

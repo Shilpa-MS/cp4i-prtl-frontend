@@ -27,6 +27,9 @@
                                 <input type="text" class="form-control" placeholder="Email" aria-describedby="basic-addon1"
                                 formControlName="email">
                             </div>
+							<div class="alert alert-danger" *ngIf = "!registrationForm.controls['email'].valid && registrationForm.controls['email'].touched">
+                              Enter a valid email id
+                            </div>
                             <div class="input-group form-group">
                                 <span class="input-group-addon" id="basic-addon1"><i class="fa fa-building-o"></i></span>
                                 <input type="tel" class="form-control" placeholder="Company Name" aria-describedby="basic-addon1"
