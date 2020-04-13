@@ -25,6 +25,9 @@ import { AssesmentToolkitComponent } from './assesment-toolkit/assesment-toolkit
 import { IntegrationPatternsComponent } from './integration-patterns/integration-patterns.component';
 import { OneClickDeploymentComponent } from './one-click-deployment/one-click-deployment.component';
 import { MultiCloudDeploymentComponent } from './multi-cloud-deployment/multi-cloud-deployment.component';
+import { AuthGuardService } from './services/auth-guard.service';
+import { CanActivate } from "@angular/router";
+import { FaqComponent } from './faq/faq.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +47,8 @@ import { MultiCloudDeploymentComponent } from './multi-cloud-deployment/multi-cl
     AssesmentToolkitComponent,
     IntegrationPatternsComponent,
     OneClickDeploymentComponent,
-    MultiCloudDeploymentComponent
+    MultiCloudDeploymentComponent,
+    FaqComponent
   ],
   imports: [
     BrowserModule,
@@ -53,7 +57,7 @@ import { MultiCloudDeploymentComponent } from './multi-cloud-deployment/multi-cl
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [AuthService,MenumasterService],
+  providers: [AuthService,MenumasterService, AuthGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

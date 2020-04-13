@@ -46,23 +46,16 @@ export class SignInComponent implements OnInit {
   
 
   login(formvalue){
-    console.log("formvalue ",formvalue);
-    /* if(this.authService.login(formvalue.user, formvalue.password)){
-      this.router.navigateByUrl('/');
-    }
-    else{
-      alert("Wrong UserName/Password");
-    } */
+    console.log("inside login");
+    
     this.menuService.UserAuthenticate(formvalue).subscribe((data: any) => {
 		  if(data.status== '200'){
 		  console.log("inside if");
 	    //alert(data.message);
 	  }
-      console.log(data," data");
-      this.loginData = data.xuser[0];
-	   console.log("this.loginData ",this.loginData);
-	
-      console.log("application data is",this.loginData);
+      
+      this.loginData = data.xuser;
+	  
       console.log("newUserFlag2222",this.loginData.email);
       this.menuService.setNewUser(this.loginData.email);
       this.menuService.getNewUser();
@@ -71,19 +64,26 @@ export class SignInComponent implements OnInit {
       this.loginForm.reset();
 	  
 	  
-    });
+    },
+      error => {
+        console.log("errro",error);
+		if(error.status == '404')
+			alert('User does not exist!');
+		if(error.status == '401')
+			alert('Password incorrect!');
+      });
   }
   registration(regFormValue){
-    console.log("formvalue ",regFormValue);
+    
    
 
     this.menuService.JumpstartfetchUserData(regFormValue.email).subscribe((data: any) => {
-      console.log("hhihioio",regFormValue.email,data,data.length);
+      console.log(regFormValue.email);
 	  
       if(data.length <= 0 )
       {
         this.menuService.JumpstartUserRegister(regFormValue).subscribe((data: any) => {
-          console.log("registration data is",data.ops[0]);
+          
           console.log("newUserFlag resig",data.ops[0].email);
           this.menuService.setNewUser(data.ops[0].email);
           this.menuService.setUserappId(data.ops[0].app_id);

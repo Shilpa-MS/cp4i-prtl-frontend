@@ -10,6 +10,7 @@ const httpOptions = {
 })
 export class MenumasterService {
 
+  //API_URL = "http://localhost:6020/api/jumpstat";
   API_URL = "https://cp4i-prtl-backend.mybluemix.net/api/jumpstat";
   
   existing_appid : string;
@@ -22,17 +23,17 @@ export class MenumasterService {
 
   
   JumpstartUserRegister(payload){
-    console.log("register data is",payload)
+    //console.log("register data is",payload)
     return this.httpClient.post(`${this.API_URL}/registerJumpstart`,payload, httpOptions);
   }
 
   UserAuthenticate(payloadform){
-    console.log("login data is",payloadform);
+    
     let payload = {
       "email":payloadform.usernamel,
       "password":payloadform.passwordl
     };
-    console.log("payload after json creation ", payload);
+    
     return this.httpClient.post(`${this.API_URL}/authenticateJumpstart`,payload, httpOptions);
   }
 
@@ -41,30 +42,7 @@ export class MenumasterService {
     return this.httpClient.post(`${this.API_URL}/fetchUserDataJumpstart`,({"email":mail}), httpOptions);
   }
 
-  /* 
-
-  getallMenuMaster(appid){
-    return this.httpClient.post(`${this.API_URL}/getallMenuMaster`,({"app_id":appid}),  httpOptions);
-  }
-
-  getallProdMaster(){
-    return this.httpClient.get(`${this.API_URL}/getallProdMaster`,  httpOptions);
-  }
-
-  saveallMenuMaster(savemenulist){
-    console.log("New data is",savemenulist)
-    return this.httpClient.post(`${this.API_URL}/saveMenuMasterData`,savemenulist, httpOptions);
-  }
-
-  updateallMenuMaster(updatemenulist){
-    console.log("Existing data is",updatemenulist)
-    return this.httpClient.post(`${this.API_URL}/updateMenuMasterData`,updatemenulist, httpOptions);
-  }
-
-  UpdateUserStatus(updateuserdata){
-    console.log("status update data is",updateuserdata)
-    return this.httpClient.post(`${this.API_URL}/UpdateUserStatus`,updateuserdata, httpOptions);
-  }*/
+ 
 
   setNewUser(mail){
     this.user_mail = mail;

@@ -10,7 +10,7 @@ describe('workspace-project App', () => {
 
   it('should display welcome message', () => {
     page.navigateTo();
-    expect(page.getTitleText()).toEqual('CP4D app is running!');
+    expect(page.getTitleText()).toEqual('cp4i-prtl app is running!');
   });
 
   afterEach(async () => {

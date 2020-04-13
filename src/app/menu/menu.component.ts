@@ -10,16 +10,18 @@ import { MenumasterService } from '../services/menumaster.service';
 export class MenuComponent implements OnInit {
 
   user:string=null;
+  temp_data: string = "";
   constructor(public MenumasterService:MenumasterService) {
    //this.user = this.authService.getUser();
    }
 
   ngOnInit() {
+	  this.MenumasterService.getNewUser();
   }
 
   logout(){
-    localStorage.removeItem('user');
-    this.MenumasterService.setNewUser("");
+    //localStorage.removeItem('user');
+    this.MenumasterService.setNewUser(this.temp_data);
   
 }
 
