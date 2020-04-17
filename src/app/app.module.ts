@@ -28,6 +28,7 @@ import { MultiCloudDeploymentComponent } from './multi-cloud-deployment/multi-cl
 import { AuthGuardService } from './services/auth-guard.service';
 import { CanActivate } from "@angular/router";
 import { FaqComponent } from './faq/faq.component';
+import { HashLocationStrategy, LocationStrategy  } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,7 @@ import { FaqComponent } from './faq/faq.component';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [AuthService,MenumasterService, AuthGuardService],
+  providers: [AuthService,MenumasterService, AuthGuardService,{provide : LocationStrategy , useClass: HashLocationStrategy}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
