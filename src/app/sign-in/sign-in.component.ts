@@ -5,6 +5,7 @@ import { MenumasterService } from './../services/menumaster.service';
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { FormsModule } from '@angular/forms';
 import { resetFakeAsyncZone } from '../../../node_modules/@angular/core/testing';
+import { emailValidator } from '../email.validator';
 
 @Component({
   selector: 'app-sign-in',
@@ -23,14 +24,20 @@ export class SignInComponent implements OnInit {
   loginForm: FormGroup;
   registrationForm: FormGroup;
   loginData: any;
-  userdata: any;
+  userdata: any;  
 
   constructor(private authService:AuthService, private router:Router,private menuService: MenumasterService,private fb: FormBuilder, private fm: FormsModule) { 
+	
+  }
 
-    this.registrationForm = this.fb.group(
+   ngOnInit() {	   
+       console.log("localStorage.removeItem('user');",localStorage.removeItem('user'));
+	   this.menuService.setNewUser('');
+       localStorage.removeItem('user');	   
+	   this.registrationForm = this.fb.group(
       {
         'username': [null, Validators.required],
-        'email': [null, Validators.compose([Validators.required, Validators.pattern("[^ @]*@[^ @]*")])],
+	    'email': [null, Validators.compose([Validators.required, emailValidator.strong])],
         'companyname': [null, Validators.required],
         'designation': [null, Validators.required],
         'password': [null, Validators.required]
@@ -42,7 +49,6 @@ export class SignInComponent implements OnInit {
           'passwordl': [null, Validators.required]
         });
   }
-
   
 
   login(formvalue){
@@ -58,6 +64,7 @@ export class SignInComponent implements OnInit {
 	  
       console.log("newUserFlag2222",this.loginData.email);
       this.menuService.setNewUser(this.loginData.email);
+	  localStorage.setItem('user',this.loginData.email);
       this.menuService.getNewUser();
       this.menuService.setUserappId(this.loginData.app_id);
       this.router.navigate(['/home']);
@@ -73,9 +80,8 @@ export class SignInComponent implements OnInit {
 			alert('Password incorrect!');
       });
   }
-  registration(regFormValue){
-    
-   
+  
+  registration(regFormValue){ 
 
     this.menuService.JumpstartfetchUserData(regFormValue.email).subscribe((data: any) => {
       console.log(regFormValue.email);
@@ -98,7 +104,6 @@ export class SignInComponent implements OnInit {
   });
   }
 
-  ngOnInit() {
-  }
+  
 
 }

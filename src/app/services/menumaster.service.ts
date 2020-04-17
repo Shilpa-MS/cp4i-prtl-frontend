@@ -46,13 +46,14 @@ export class MenumasterService {
 
   setNewUser(mail){
     this.user_mail = mail;
-    console.log("new user mail",this.user_mail);
+    console.log("new user mail",this.user_mail,localStorage.getItem('user'));
   }
 
 
   getNewUser(){
     return this.user_mail;
   }
+  
 
   setUserappId(id){
    this.existing_appid = id;

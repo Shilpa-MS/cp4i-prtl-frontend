@@ -18,20 +18,20 @@ import { FaqComponent } from './faq/faq.component';
 
 
 const routes: Routes = [
-  {path:"home", component:HomeComponent, canActivate:[AuthGuardService]},
-  {path:"tools", component:ToolsComponent, canActivate:[AuthGuardService]},
-  {path:"solutionsServices", component:SolutionsServicesComponent, canActivate:[AuthGuardService]},
-  {path:"stories", component:StoriesComponent, canActivate:[AuthGuardService]},
-  {path:"bestPractices", component:BestPracticesComponent, canActivate:[AuthGuardService]},
-  {path:"oneClickDeployment", component:OneClickDeploymentComponent, canActivate:[AuthGuardService]},
-  {path:"multiCloudDeployment", component:MultiCloudDeploymentComponent, canActivate:[AuthGuardService]},
-  {path:"integrationPatterns", component: IntegrationPatternsComponent, canActivate:[AuthGuardService]},
-  {path:"assessmentToolkit", component:AssesmentToolkitComponent, canActivate:[AuthGuardService]},
+  {path:"home" , canActivate:[AuthGuardService], component:HomeComponent},
+  {path:"tools" , canActivate:[AuthGuardService], component:ToolsComponent},
+  {path:"solutionsServices" , canActivate:[AuthGuardService], component:SolutionsServicesComponent},
+  {path:"stories" , canActivate:[AuthGuardService], component:StoriesComponent},
+  {path:"bestPractices" , canActivate:[AuthGuardService], component:BestPracticesComponent},
+  {path:"oneClickDeployment" , canActivate:[AuthGuardService], component:OneClickDeploymentComponent},
+  {path:"multiCloudDeployment" , canActivate:[AuthGuardService], component:MultiCloudDeploymentComponent},
+  {path:"integrationPatterns" , canActivate:[AuthGuardService], component: IntegrationPatternsComponent},
+  {path:"assessmentToolkit" , canActivate:[AuthGuardService], component:AssesmentToolkitComponent},
   {path:"signin", component:SignInComponent},
   {path:"signup", component:SignUpComponent},
-  {path:"about", component:AboutComponent, canActivate:[AuthGuardService]},
-  {path:"contact", component:ContactComponent, canActivate:[AuthGuardService]},
-  {path:"faq", component:FaqComponent, canActivate:[AuthGuardService]},
+  {path:"about" , canActivate:[AuthGuardService], component:AboutComponent},
+  {path:"contact" , canActivate:[AuthGuardService], component:ContactComponent},
+  {path:"faq" , canActivate:[AuthGuardService], component:FaqComponent},
   {path:"", redirectTo:"/signin", pathMatch:"full"}
 ];
 

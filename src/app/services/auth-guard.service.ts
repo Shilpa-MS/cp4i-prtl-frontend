@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Router , CanActivate } from '@angular/router';
+import { Router , CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { MenumasterService } from './menumaster.service';
 
 @Injectable({
@@ -11,9 +11,9 @@ export class AuthGuardService implements CanActivate {
 
   canActivate(){
 	  
-	  console.log("((((((((",this.authServ.getNewUser())
+	  console.log("((((((((",localStorage.getItem('user'))
   
-    if (this.authServ.getNewUser()) {
+    if (localStorage.getItem('user')) {
       return true;
     }
 
