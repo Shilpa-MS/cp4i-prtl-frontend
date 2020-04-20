@@ -22,12 +22,12 @@ export class MenumasterService {
 
   
   JumpstartUserRegister(payload){
-    //console.log("register data is",payload)
+    
     return this.httpClient.post(`${this.API_URL}/registerJumpstart`,payload, httpOptions);
   }
 
   UserAuthenticate(payloadform){
-    
+    console.log("Backend API URL: ",this.API_URL);
     let payload = {
       "email":payloadform.usernamel,
       "password":payloadform.passwordl
