@@ -1,0 +1,17 @@
+node_modules/
+# Eclipse project files
+# =====================
+.project
+.settings/
+.*.md.html
+.metadata
+*~.nib
+local.properties
+# Visual Studio
+# =========
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# Courtesy of https://github.com/meanjs/mean/blob/master/.gitignore

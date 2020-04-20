@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { environment } from 'src/environments/environment';
 
 const httpOptions = {
   headers: new HttpHeaders({ "Content-Type": "application/json" })
@@ -10,9 +11,7 @@ const httpOptions = {
 })
 export class MenumasterService {
 
-  //API_URL = "http://localhost:6020/api/jumpstat";
-  API_URL = "https://cp4i-prtl-backend.mybluemix.net/api/jumpstat";
-  
+  API_URL = environment.apiUrl;
   existing_appid : string;
   user_mail: string;
  
