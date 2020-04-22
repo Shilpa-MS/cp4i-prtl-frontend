@@ -33,7 +33,8 @@ export class SignInComponent implements OnInit {
    ngOnInit() {	   
        console.log("localStorage.removeItem('user');",localStorage.removeItem('user'));
 	   this.menuService.setNewUser('');
-       localStorage.removeItem('user');	   
+       localStorage.removeItem('user');	 
+       this.menuService.setNewUserRole('');	   
 	   this.registrationForm = this.fb.group(
       {
         'username': [null, Validators.required],
@@ -55,21 +56,33 @@ export class SignInComponent implements OnInit {
     console.log("inside login");
     
     this.menuService.UserAuthenticate(formvalue).subscribe((data: any) => {
-		  if(data.status== '200'){
-		  console.log("inside if");
-	    //alert(data.message);
-	  }
-      
-      this.loginData = data.xuser;
+	    if(data.status== '200'){
+		    console.log("inside if");
+	        //alert(data.message);
 	  
-      console.log("newUserFlag2222",this.loginData.email);
-      this.menuService.setNewUser(this.loginData.email);
-	  localStorage.setItem('user',this.loginData.email);
-      this.menuService.getNewUser();
-      this.menuService.setUserappId(this.loginData.app_id);
-      this.router.navigate(['/home']);
-      this.loginForm.reset();
-	  
+            console.log(data," data");
+            this.loginData = data.xuser;
+			console.log("this.loginData ",this.loginData);
+			this.menuService.setNewUser(this.loginData.email);
+			localStorage.setItem('user',this.loginData.email);
+            this.menuService.getNewUser();
+	        this.menuService.setNewUserRole(this.loginData.role);
+			if(this.loginData.status == "approved" || this.loginData.role == 'admin')
+			{
+				
+	            if(this.loginData.role == 'user'){
+                  this.router.navigate(['/home']);
+                }else
+                {
+                  this.router.navigate(['/admin']);
+                }  
+                //this.router.navigate(['/home']);
+                this.loginForm.reset();
+			}
+			else{
+				alert("User is not Authorized")
+			}
+	    }
 	  
     },
       error => {
@@ -78,6 +91,8 @@ export class SignInComponent implements OnInit {
 			alert('User does not exist!');
 		if(error.status == '401')
 			alert('Password incorrect!');
+		if(error.status == '500')
+			alert('server error!');
       });
   }
   
@@ -92,9 +107,9 @@ export class SignInComponent implements OnInit {
           
           console.log("newUserFlag resig",data.ops[0].email);
           this.menuService.setNewUser(data.ops[0].email);
-          this.menuService.setUserappId(data.ops[0].app_id);
-          this.router.navigate(['/home']);
-        this.registrationForm.reset;
+          //this.menuService.setUserappId(data.ops[0].app_id);
+          this.router.navigate(['/signin']);
+          this.registrationForm.reset();
       
         });
       } else

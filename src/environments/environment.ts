@@ -4,6 +4,7 @@
 
 export const environment = {
   apiUrl: 'http://localhost:6020/api/jumpstat',
+  //apiUrl:'https://cp4i-prtl-backend-test.mybluemix.net/api/jumpstat',
   production: false
 };
 

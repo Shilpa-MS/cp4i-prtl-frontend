@@ -1,0 +1,42 @@
+.container1{
+      background-color: lightgray;
+    border-style: solid;
+    border-color: darkgrey;
+    border-radius: 1em;
+}
+
+
+.nav-pills{
+  border-bottom-style: solid;
+  border-bottom-color: darkgrey;
+}
+
+.active{
+  background-color: darkgrey !important;
+}
+
+.nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
+    color: #fff;
+    background-color: #9e9c9c;
+}
+
+.addresspop{
+    width: 70px;
+    /* height: 103px; */
+    padding: 10px;
+    background: white;
+}
+
+.dropdown-menu{
+  position: initial !important;
+  float:none;
+}
+
+.ngx-pagination {
+    float: initial ;
+    margin-left: 60em;
+}
+
+.ngx-pagination .current {
+  background-color:#777b7d !important;
+}

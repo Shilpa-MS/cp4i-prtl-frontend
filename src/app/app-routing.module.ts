@@ -15,6 +15,7 @@ import { IntegrationPatternsComponent } from './integration-patterns/integration
 import { AssesmentToolkitComponent } from './assesment-toolkit/assesment-toolkit.component';
 import { AuthGuardService } from './services/auth-guard.service';
 import { FaqComponent } from './faq/faq.component';
+import { AdminComponent } from './admin/admin.component';
 
 
 const routes: Routes = [
@@ -32,6 +33,7 @@ const routes: Routes = [
   {path:"about" , canActivate:[AuthGuardService], component:AboutComponent},
   {path:"contact" , canActivate:[AuthGuardService], component:ContactComponent},
   {path:"faq" , canActivate:[AuthGuardService], component:FaqComponent},
+  {path:"admin", canActivate:[AuthGuardService], component:AdminComponent},
   {path:"", redirectTo:"/signin", pathMatch:"full"}
 ];
 

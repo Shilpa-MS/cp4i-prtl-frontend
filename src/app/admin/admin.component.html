@@ -1,0 +1,97 @@
+<section id="about-page-section-3">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-12 text-align">
+                <div class="section-heading">
+                    <h2>Admin
+                        <span></span>
+                    </h2>
+                    
+                </div>
+				
+				<div class="container1">
+                   <ul class="nav nav-pills">
+                      <li class="active"><a data-toggle="pill" href="#menu1">Action</a></li>
+                      <li><a data-toggle="pill" href="#menu2">Archive</a></li>
+                   </ul>
+				   <div class="tab-content">
+				   
+                      <div id="menu1" class="tab-pane fade in active">
+                         <table class="table">
+                           <thead>
+                             <tr>
+                               <th style="width:10%">#</th>
+                               <th style="width:50%">Enail</th>
+							   <th style="width:20%">Comments</th>
+		                       <th style="width:20%"></th>
+                             </tr>
+                           </thead>
+                           <tbody>
+                             <tr *ngFor="let user of userdata">
+                               <td *ngIf="user.status == 'pending'">
+                                  <input type="radio" class="radiostyle" id="defaultChecked" (click)="inputselect(user)" name="defaultExampleRadios" >
+                               </td>
+                               <td *ngIf="user.status == 'pending'">
+							        <a class=" dropdown-toggle" data-toggle="dropdown" data-trigger="hover" href="#">{{user.email}}</a>
+                                    <div class="dropdown-menu addresspop">
+                                       User Name: {{user.username}} 
+									   Company Name: {{user.companyname}} 
+									   Designation: {{user.designation}}               
+                                    </div>
+							   </td>
+							   <td *ngIf="user.status == 'pending'">
+							     <input [disabled]="user.email != emailId" class="textarea" [(ngModel)]="user.comment">
+							   </td>
+                               <td *ngIf="user.status == 'pending'">
+                                  <button [disabled]="user.email != emailId" type="button" class="btn btn-success" (click)="approve(user)" >
+                                     Approve
+                                  </button>
+			                      <button [disabled]="user.email != emailId" type="button" class="btn btn-danger"  (click)="reject(user)">
+                                     Reject
+                                  </button>
+                               </td>
+                             </tr>							 
+                           </tbody>
+                         </table>
+                      </div>
+                      <div id="menu2" class="tab-pane fade">
+                         <table class="table">
+                           <thead>
+                             <tr>
+                               <th style="width:2%"></th>
+                               <th style="width:50%">Enail</th>
+							   <th style="width:20%">Stauts</th>
+							   <th style="width:25%">Comments</th>
+                             </tr>
+                           </thead>
+                           <tbody>
+                             <tr *ngFor="let user of userdata">
+                               <td *ngIf="user.status == 'approved' || user.status == 'rejected'">
+                                  
+                               </td>
+                               <td *ngIf="user.status == 'approved' || user.status == 'rejected'">
+                                    <a class=" dropdown-toggle" data-toggle="dropdown" data-trigger="hover" href="#">{{user.email}}</a>
+                                    <div class="dropdown-menu addresspop">
+                                       User Name: {{user.username}} 
+									   Company Name: {{user.companyname}} 
+									   Designation: {{user.designation}}               
+                                    </div>
+							   </td>
+                               <td *ngIf="user.status == 'approved' || user.status == 'rejected'">{{user.status}}</td>
+							   <td *ngIf="user.status == 'approved' || user.status == 'rejected'">
+							        <input class="textarea" [(ngModel)]="user.comment" disabled>
+							   </td>
+                             </tr>
+                           </tbody>
+                         </table>
+                      </div>
+                   </div>
+                </div>
+				
+				
+            </div>
+        </div>
+    </div>
+</section>
+
+

@@ -17,13 +17,14 @@
 
                     </div>
                 <div id="navbar" class="collapse navbar-collapse navbar-right">
-                    <ul *ngIf="MenumasterService.getNewUser()" class="nav navbar-nav" style="margin: 1.5px 90px 5px">
+                    <ul *ngIf="MenumasterService.getNewUser()" class="nav navbar-nav" style="margin: 1.5px 70px 20px">
                         <li><a routerLink="about" routerLinkActive="active">About</a></li>
                         <li><a routerLink="solutionsServices" routerLinkActive="active">Services & Solutions</a></li>
                         <li><a routerLink="tools" routerLinkActive="active">Tools</a></li>
                         <li><a routerLink="bestPractices" routerLinkActive="active">Best Practices</a></li>
                         <li ><a routerLink="stories" routerLinkActive="active">Stories</a></li>
 						<li ><a routerLink="faq" routerLinkActive="active">FAQ</a></li>
+						<li *ngIf="this.user_role == 'admin' || MenumasterService.getNewUserRole()=='admin'"><a routerLink="admin" routerLinkActive="active">Admin</a></li>
                         <!-- <li *ngIf="!MenumasterService.getNewUser()"><a routerLink="signin" routerLinkActive="active">Login/Register</a></li> -->
                         <li ><a href="" (click)="logout()">Logout</a></li>
 

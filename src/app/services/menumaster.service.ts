@@ -12,7 +12,7 @@ const httpOptions = {
 export class MenumasterService {
 
   API_URL = environment.apiUrl;
-  existing_appid : string;
+  user_role : string;
   user_mail: string;
  
 
@@ -40,7 +40,15 @@ export class MenumasterService {
     console.log("fetch data is",mail)
     return this.httpClient.post(`${this.API_URL}/fetchUserDataJumpstart`,({"email":mail}), httpOptions);
   }
-
+  
+    UpdateUserStatus(updateuserdata){
+    console.log("status update data is",updateuserdata)
+    return this.httpClient.post(`${this.API_URL}/UpdateUserStatus`,updateuserdata, httpOptions);
+  }
+  
+  fetchAllUserData(){
+    return this.httpClient.get(`${this.API_URL}/fetchAllUserData`, httpOptions);
+  }
  
 
   setNewUser(mail){
@@ -54,13 +62,13 @@ export class MenumasterService {
   }
   
 
-  setUserappId(id){
-   this.existing_appid = id;
-   console.log("new user flag",this.existing_appid);
+  setNewUserRole(role){
+   this.user_role = role;
+   console.log("new user flag",this.user_role);
   }
 
-  getUserappId(){
-    return this.existing_appid;
+  getNewUserRole(){
+    return this.user_role;
   } 
 
  

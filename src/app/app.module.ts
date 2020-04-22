@@ -29,6 +29,7 @@ import { AuthGuardService } from './services/auth-guard.service';
 import { CanActivate } from "@angular/router";
 import { FaqComponent } from './faq/faq.component';
 import { HashLocationStrategy, LocationStrategy  } from '@angular/common';
+import { AdminComponent } from './admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { HashLocationStrategy, LocationStrategy  } from '@angular/common';
     IntegrationPatternsComponent,
     OneClickDeploymentComponent,
     MultiCloudDeploymentComponent,
-    FaqComponent
+    FaqComponent,
+	AdminComponent
   ],
   imports: [
     BrowserModule,
