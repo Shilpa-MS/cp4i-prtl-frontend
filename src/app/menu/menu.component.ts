@@ -21,18 +21,22 @@ export class MenuComponent implements OnInit {
    }
 
   ngOnInit() {
-	  this.MenumasterService.getNewUser();
-	  this.MenumasterService.JumpstartfetchUserData(this.user).subscribe((data: any) => {
-         console.log("role.data",data[0].role);
-		 this.user_role = data[0].role;
-		// this.enable_flag = true;
-      });
+	if (localStorage.getItem('user'))
+	{
+	     this.MenumasterService.getNewUser();
+	     this.MenumasterService.JumpstartfetchUserData(this.user).subscribe((data: any) => {
+            console.log("role.data",data[0].role);
+		    this.user_role = data[0].role;
+		    // this.enable_flag = true;
+        });
+	}
   }
 
   logout(){
     localStorage.removeItem('user');
     this.MenumasterService.setNewUser(this.temp_data);
 	this.MenumasterService.setNewUserRole('');
+	this.user = '';
   }
 
 }
