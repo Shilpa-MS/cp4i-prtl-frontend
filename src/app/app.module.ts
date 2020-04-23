@@ -30,6 +30,7 @@ import { CanActivate } from "@angular/router";
 import { FaqComponent } from './faq/faq.component';
 import { HashLocationStrategy, LocationStrategy  } from '@angular/common';
 import { AdminComponent } from './admin/admin.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -58,7 +59,8 @@ import { AdminComponent } from './admin/admin.component';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+	NgxPaginationModule
   ],
   providers: [AuthService,MenumasterService, AuthGuardService,{provide : LocationStrategy , useClass: HashLocationStrategy}],
   bootstrap: [AppComponent]
