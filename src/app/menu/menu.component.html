@@ -19,12 +19,12 @@
                 <div id="navbar" class="collapse navbar-collapse navbar-right">
                     <ul *ngIf="MenumasterService.getNewUser()" class="nav navbar-nav" style="margin: 1.5px 70px 20px">
                         <li><a routerLink="about" routerLinkActive="active" (click)="nav()">About</a></li>
-                        <li><a routerLink="solutionsServices" routerLinkActive="active" (click)="nav()">Services & Solutions</a></li>
-                        <li><a routerLink="tools" routerLinkActive="active" (click)="nav()">Tools</a></li>
-                        <li><a routerLink="bestPractices" routerLinkActive="active" (click)="nav()">Best Practices</a></li>
-                        <li ><a routerLink="stories" routerLinkActive="active" (click)="nav()">Stories</a></li>
-						<li ><a routerLink="faq" routerLinkActive="active" (click)="nav()">FAQ</a></li>
-						<li *ngIf="this.user_role == 'admin' || MenumasterService.getNewUserRole()=='admin'"><a routerLink="admin" routerLinkActive="active" (click)="nav()">Admin</a></li>
+                        <li><a routerLink="solutionsServices" routerLinkActive="active">Services & Solutions</a></li>
+                        <li><a routerLink="tools" routerLinkActive="active" >Tools</a></li>
+                        <li><a routerLink="bestPractices" routerLinkActive="active" >Best Practices</a></li>
+                        <li ><a routerLink="stories" routerLinkActive="active" >Stories</a></li>
+						<li ><a routerLink="faq" routerLinkActive="active" >FAQ</a></li>
+						<li *ngIf="this.user_role == 'admin' || MenumasterService.getNewUserRole()=='admin'"><a routerLink="admin" routerLinkActive="active" >Admin</a></li>
                         <!-- <li *ngIf="!MenumasterService.getNewUser()"><a routerLink="signin" routerLinkActive="active">Login/Register</a></li> -->
                         <li ><a href="" (click)="logout()">Logout</a></li>
 
