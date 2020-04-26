@@ -3927,10 +3927,11 @@ pointer-events: none;
 .navbar-inverse .navbar-brand {
 	color: #9d9d9d;
 }
+/*change */
 .navbar-inverse .navbar-brand:hover, .navbar-inverse .navbar-brand:focus {
 	color: #fff;
-	background-color: transparent;
-}
+	background-color: transparent; 
+ } 
 .navbar-inverse .navbar-text {
 	color: #9d9d9d;
 }
@@ -5982,9 +5983,10 @@ body header.sticky {
 	-moz-box-shadow: 0 3px 5px rgba(57, 63, 72, 0.3);
 	box-shadow: 0 3px 5px rgba(57, 63, 72, 0.3);
 }
+/*change for navbar*/
 body header.sticky .navbar-nav > li > a {
-	padding-top: 25px;
-	padding-bottom: 20px;
+	/* padding-top: 25px;
+	padding-bottom: 20px; */
 	transition: 0.8s;
 	z-index: 999;
 }
@@ -6043,10 +6045,12 @@ body .navbar-brand span {
 	text-transform: lowercase;
 	font-size: 15px;
 }
+/*change*/
 body .navbar-inverse .navbar-nav > li > a {
 	color: #333333;
 	font-weight: bold;
 	text-transform: uppercase;
+	text-align: left;
 }
 body .navbar-nav > li > a {
 	padding-top: 40px;
@@ -6106,8 +6110,14 @@ body .navbar-nav > li > a {
 	padding-top: 10px;
 	padding-bottom: 10px;
 }
+/*change for navbar height:100%;*/
 body .collapse.in {
 	display: block !important;
+	position: absolute;
+    overflow: visible;
+    z-index: 999;
+	width:100%;
+	background-color:white;
 }
 body .navbar-nav > li > a {
 	line-height: 30px;

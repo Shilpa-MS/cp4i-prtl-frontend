@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MenumasterService } from './../services/menumaster.service';
+import { NgxUiLoaderService } from 'ngx-ui-loader'; 
 
 @Component({
   selector: 'app-admin',
@@ -18,7 +19,7 @@ export class AdminComponent implements OnInit {
 	enable_flag:boolean = false;
 	enable_flag1:boolean = false;
 
-  constructor(private menuService: MenumasterService) { }
+  constructor(private menuService: MenumasterService, private ngxService: NgxUiLoaderService) { }
 
   index1 = 0;
   index2 = 0;
@@ -30,6 +31,7 @@ export class AdminComponent implements OnInit {
 	  this.UserStat = this.menuService.getNewUser();
 	  this.index1= 0;
 	  this.index2= 0;
+	  this.ngxService.start();
 	  this.menuService.fetchAllUserData().subscribe((data: any) => {
          this.userdata = data;
          console.log("userdata data is admin",this.userdata);
@@ -48,6 +50,7 @@ export class AdminComponent implements OnInit {
 				  this.enable_flag1 = true;
                } 			   
       });
+	  this.ngxService.stop();
    });	  
   }
   

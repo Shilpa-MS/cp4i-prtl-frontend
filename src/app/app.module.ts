@@ -31,6 +31,7 @@ import { FaqComponent } from './faq/faq.component';
 import { HashLocationStrategy, LocationStrategy  } from '@angular/common';
 import { AdminComponent } from './admin/admin.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { NgxUiLoaderModule } from  'ngx-ui-loader';
 
 @NgModule({
   declarations: [
@@ -60,7 +61,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-	NgxPaginationModule
+	NgxPaginationModule,
+	NgxUiLoaderModule
   ],
   providers: [AuthService,MenumasterService, AuthGuardService,{provide : LocationStrategy , useClass: HashLocationStrategy}],
   bootstrap: [AppComponent]
