@@ -27,7 +27,7 @@
                              </tr>
                            </thead>
                            <tbody>
-                             <tr *ngFor="let user of UserPendingData | paginate:{id: 'versionPagination1', itemsPerPage: 5, currentPage:p1}">
+                              <tr *ngFor="let user of UserPendingData"> <!-- | paginate:{id: 'versionPagination1', itemsPerPage: 5, currentPage:p1} -->
                                <td >
                                   <input type="radio" class="radiostyle" id="defaultChecked" (click)="inputselect(user)" name="defaultExampleRadios" >
                                </td>
@@ -53,7 +53,7 @@
                              </tr>							 
                            </tbody>
                          </table>
-						 <pagination-controls id="versionPagination1" (pageChange)="p1=$event" style="float: right"></pagination-controls>
+						 <!-- <pagination-controls id="versionPagination1" (pageChange)="p1=$event" style="float: right"></pagination-controls> -->
                       </div>
                       <div id="menu2" class="tab-pane fade">
                          <table class="table">
@@ -66,7 +66,7 @@
                              </tr>
                            </thead>
                            <tbody>
-                             <tr *ngFor="let user of UserHistoryData | paginate:{id: 'versionPagination2', itemsPerPage:5 , currentPage:p2}">
+                              <tr *ngFor="let user of UserHistoryData">  <!--| paginate:{id: 'versionPagination2', itemsPerPage:5 , currentPage:p2} -->
                                <td >
                                   
                                </td>
@@ -85,7 +85,7 @@
                              </tr>
                            </tbody>
                          </table>
-						  <pagination-controls id="versionPagination2" (pageChange)="p2=$event" style="float: right"></pagination-controls>
+						  <!-- <pagination-controls id="versionPagination2" (pageChange)="p2=$event" style="float: right"></pagination-controls> -->
                       </div>
                    </div>
                 </div>

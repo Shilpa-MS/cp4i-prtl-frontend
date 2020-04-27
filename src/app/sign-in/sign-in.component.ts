@@ -63,12 +63,13 @@ export class SignInComponent implements OnInit {
             console.log(data," data");
             this.loginData = data.xuser;
 			console.log("this.loginData ",this.loginData);
-			this.menuService.setNewUser(this.loginData.email);
-			localStorage.setItem('user',this.loginData.email);
-            this.menuService.getNewUser();
-	        this.menuService.setNewUserRole(this.loginData.role);
+			
 			if(this.loginData.status == "approved" || this.loginData.role == 'admin')
 			{
+				this.menuService.setNewUser(this.loginData.email);
+			    localStorage.setItem('user',this.loginData.email);
+                this.menuService.getNewUser();
+	            this.menuService.setNewUserRole(this.loginData.role);
 				
 	            if(this.loginData.role == 'user'){
                   this.router.navigate(['/home']);
