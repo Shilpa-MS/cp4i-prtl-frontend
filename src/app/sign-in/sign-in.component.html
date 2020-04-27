@@ -78,6 +78,7 @@
                                 formControlName="passwordl"><!-- [(ngModel)]="password" -->
                             </div>
                             <button type="submit" (click)="login(loginForm.value)" class="btn">Sign in!</button>
+							<p style="float:right"><a data-toggle="modal" data-target="#myModal" data-backdrop="false">Forgot Password</a></p>
                         </form>
                     </div>
                 </div>
@@ -89,3 +90,26 @@
     </div>
     
 </section>
+
+<!-- Modal -->
+  <div class="modal" id="myModal" >
+    <div class="modal-dialog " >
+    
+      <!-- Modal content-->
+      <div class="modal-content" style="height: 170px;">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Forgot Password</h4>
+        </div>
+        <div class="modal-body">
+          <div class="input-group form-group">
+                <span class="input-group-addon" id="basic-addon1"><i class="fa fa-user"></i></span>
+                <input type="text" name="user"  class="form-control" placeholder="Email" aria-describedby="basic-addon1"
+                                [(ngModel)]="mail"><!-- [(ngModel)]="user" -->
+          </div>
+		  <button type="submit" (click)="forgotPassword()" class="btn" style="float:right">Get Password!</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>

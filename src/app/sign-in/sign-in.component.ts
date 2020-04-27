@@ -25,6 +25,7 @@ export class SignInComponent implements OnInit {
   registrationForm: FormGroup;
   loginData: any;
   userdata: any;  
+  mail: any;
 
   constructor(private authService:AuthService, private router:Router,private menuService: MenumasterService,private fb: FormBuilder, private fm: FormsModule) { 
 	
@@ -118,6 +119,17 @@ export class SignInComponent implements OnInit {
         alert("user is already present")
       }
   });
+  }
+  
+  forgotPassword()
+  {
+	  console.log("mail id is",this.mail);
+	  this.menuService.JumpstartfetchUserData(this.mail).subscribe((data: any) => {
+      console.log(data[0].password); 
+     
+        alert("Password");
+  });
+	  
   }
 
   
