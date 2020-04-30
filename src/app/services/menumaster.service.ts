@@ -49,6 +49,25 @@ export class MenumasterService {
   fetchAllUserData(){
     return this.httpClient.get(`${this.API_URL}/fetchAllUserData`, httpOptions);
   }
+  
+  fetchSecurityQues(){
+    return this.httpClient.get(`${this.API_URL}/fetchUserSecurityQues`, httpOptions);
+  }
+  
+  compareSecurityQuesforuser(payloadform){
+    console.log("payload after json creation ", payloadform);
+    return this.httpClient.post(`${this.API_URL}/compareSecurityQuesforuser`,payloadform, httpOptions);
+  }
+   
+  UpdateUserPassword(updateuserpassword){
+    console.log("status update data is",updateuserpassword)
+    return this.httpClient.post(`${this.API_URL}/UpdateUserPassword`,updateuserpassword, httpOptions);
+  }
+
+   sendMail(data){
+	console.log("mail details is",data)
+    return this.httpClient.post(`${this.API_URL}/sendmail`,data, httpOptions);
+  }
  
 
   setNewUser(mail){

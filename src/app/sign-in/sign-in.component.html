@@ -46,7 +46,34 @@
                                     <span class="input-group-addon" id="basic-addon1"><i class="fa fa-key"></i></span>
                                     <input type="password" class="form-control" placeholder="Password" aria-describedby="basic-addon1"
                                     formControlName="password">
-                                </div>
+                            </div>
+							<label>Security Question:</label><br>
+							<div class="input-group form-group">
+							    <span class="input-group-addon" id="basic-addon1"><i class="fa fa-eye"></i></span>
+                                <select class="form-control" formControlName="securityfaq_one" >
+                                    <option placeholder="Password" *ngFor="let faq of SecurityQues" [value]="faq.secQues" >
+								            {{ faq.secQues }}                          
+                                    </option>
+                                </select>
+							</div>
+							<div class="input-group form-group">
+							       <span class="input-group-addon" id="basic-addon1"><i class="fa fa-reply"></i></span>
+                                    <input type="password" name="password" class="form-control" placeholder="Answer" aria-describedby="basic-addon1"
+                                    formControlName="securityanswer_one">
+                            </div>
+							<div class="input-group form-group">
+							    <span class="input-group-addon" id="basic-addon1"><i class="fa fa-eye"></i></span>
+                                <select class="form-control" formControlName="securityfaq_two" >
+                                    <option *ngFor="let faq of SecurityQues" [value]="faq.secQues" >
+								            {{ faq.secQues }}                          
+                                    </option>
+                                </select>
+							</div>
+							<div class="input-group form-group">
+							       <span class="input-group-addon" id="basic-addon1"><i class="fa fa-reply"></i></span>
+                                    <input type="password" name="password" class="form-control" placeholder="Answer" aria-describedby="basic-addon1"
+                                    formControlName="securityanswer_two">
+                            </div>
                             <button type="submit" class="btn btn-primary" (click)="registration(registrationForm.value)">Sign me up!</button>
                         </form>
                     </div>
@@ -91,24 +118,46 @@
     
 </section>
 
-<!-- Modal -->
+ <!-- Modal -->
   <div class="modal" id="myModal" >
-    <div class="modal-dialog " >
+    <div class="modal-dialog modal-lg" >
     
       <!-- Modal content-->
-      <div class="modal-content" style="height: 170px;">
+      <div class="modal-content" >
         <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <button type="button" class="close" data-dismiss="modal" id="closeModal"(click)="refresh()">&times;</button>
           <h4 class="modal-title">Forgot Password</h4>
         </div>
         <div class="modal-body">
-          <div class="input-group form-group">
-                <span class="input-group-addon" id="basic-addon1"><i class="fa fa-user"></i></span>
-                <input type="text" name="user"  class="form-control" placeholder="Email" aria-describedby="basic-addon1"
-                                [(ngModel)]="mail"><!-- [(ngModel)]="user" -->
-          </div>
-		  <button type="submit" (click)="forgotPassword()" class="btn" style="float:right">Get Password!</button>
+          <!-- <div class="input-group form-group"> -->
+		        <div class="input-group form-group">
+                   <span class="input-group-addon" id="basic-addon1"><i class="fa fa-user"></i></span>
+                   <input type="text" name="user"  class="form-control" placeholder="Email" aria-describedby="basic-addon1"
+                           (blur)="mailcheck(mail)" [(ngModel)]="mail"><!-- [(ngModel)]="user" -->
+					<span class="input-group-addon" id="basic-addon1"><i class="fa fa-refresh" (click)="mailcheck(mail)"></i></span>
+				</div>
+				<div class="input-group form-group" *ngIf="userInfoFlag">
+				   <span></span>
+			       <label>{{this.userinfo.securityfaq_one}}</label><br>
+				   <input type="password" name="password" class="form-control" aria-describedby="basic-addon1" [(ngModel)]="answer1">
+				   
+				   <label>{{this.userinfo.securityfaq_two}}</label><br>
+				   <input type="password" name="password" class="form-control" aria-describedby="basic-addon1" [(ngModel)]="answer2">
+				   
+				   	<button *ngIf="userInfoFlag" type="submit"  (click)="checkans()" class="btn btn-success" style="float:right">check!</button>
+				</div>
+
+				<div class="input-group form-group" *ngIf="passwordEnableFlag">
+				   <label>New password</label><br>
+				   <input type="password" name="password" class="form-control"  aria-describedby="basic-addon1" [(ngModel)]="newpassword">
+				   <label>Confirm password</label><br>
+				   <input type="password" name="password" class="form-control"  aria-describedby="basic-addon1" [(ngModel)]="confirmpassword">
+				</div>
+          <!-- </div> -->
         </div>
+		<div class="modal-footer">
+             <button type="submit" [disabled]="!passwordEnableFlag" (click)="forgotPassword()" class="btn btn-success" style="float:right">Reset Password!</button>
+         </div>
       </div>
       
     </div>
