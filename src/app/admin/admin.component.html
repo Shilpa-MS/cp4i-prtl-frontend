@@ -21,17 +21,17 @@
                            <thead>
                              <tr>
                                <th>#</th>
-                               <th>Enail</th>
+                               <th>Email</th>
 							   <th>Comments</th>
 		                       <th></th>
                              </tr>
                            </thead>
                            <tbody>
                               <tr *ngFor="let user of UserPendingData"> <!-- | paginate:{id: 'versionPagination1', itemsPerPage: 5, currentPage:p1} -->
-                               <td >
+                               <td data-title="#">
                                   <input type="radio" class="radiostyle" id="defaultChecked" (click)="inputselect(user)" name="defaultExampleRadios" >
                                </td>
-                               <td >
+                               <td data-title="Email">
 							        <a class=" dropdown-toggle" data-toggle="dropdown" data-trigger="hover" href="#">{{user.email}}</a>
                                     <div class="dropdown-menu addresspop">
                                        User Name: {{user.username}} 
@@ -39,7 +39,7 @@
 									   Designation: {{user.designation}}               
                                     </div>
 							   </td>
-							   <td >
+							   <td data-title="Comments">
 							     <input [disabled]="user.email != emailId" class="textarea" [(ngModel)]="user.comment">
 							   </td>
                                <td >
@@ -59,14 +59,14 @@
                          <table class="table">
                            <thead>
                              <tr>
-                               <th>Enail</th>
+                               <th>Email</th>
 							   <th>Stauts</th>
 							   <th>Comments</th>
                              </tr>
                            </thead>
                            <tbody>
                               <tr *ngFor="let user of UserHistoryData">  <!--| paginate:{id: 'versionPagination2', itemsPerPage:5 , currentPage:p2} -->
-                               <td >
+                               <td data-title="Email">
                                     <a class=" dropdown-toggle" data-toggle="dropdown" data-trigger="hover" href="#">{{user.email}}</a>
                                     <div class="dropdown-menu addresspop">
                                        User Name: {{user.username}} 
@@ -74,8 +74,8 @@
 									   Designation: {{user.designation}}               
                                     </div>
 							   </td>
-                               <td >{{user.status}}</td>
-							   <td >
+                               <td data-title="Status">{{user.status}}</td>
+							   <td data-title="Comments">
 							        <input class="textarea" [(ngModel)]="user.comment" disabled>
 							   </td>
                              </tr>
