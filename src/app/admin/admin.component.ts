@@ -94,10 +94,7 @@ export class AdminComponent implements OnInit {
   
   inputselect(userselectdata){
     console.log("admin data", userselectdata);
-	this.emailId = userselectdata.email;
-	/* this.userdata.forEach(element => {
-          
-   }); */
+	this.emailId = userselectdata.email
   }
   
   approve(userapproveData){
