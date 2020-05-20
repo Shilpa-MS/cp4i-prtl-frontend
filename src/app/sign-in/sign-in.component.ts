@@ -77,10 +77,10 @@ export class SignInComponent implements OnInit {
 	  //this.sendmail();
   }
   
-  sendmail(){
+  sendmail(mailid){
 	  
 	let mailbody = {
-              "to": "xxxx@gmail.com",
+              "to": mailid,
               "from": "chris.hembrom@gmail.com",
               "subject": "Registration in Jumpstat",
               "text": "Registration is completed successfully ",
@@ -166,7 +166,7 @@ export class SignInComponent implements OnInit {
           //this.menuService.setUserappId(data.ops[0].app_id);
           this.router.navigate(['/signin']);
           this.registrationForm.reset();
-          this.sendmail();
+          this.sendmail(regFormValue.email);
         });
       } else
       {

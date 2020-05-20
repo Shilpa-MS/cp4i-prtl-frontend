@@ -27,10 +27,10 @@ export class AdminComponent implements OnInit {
     this.getUser();
   }
   
-   approvedsendmail(){
+   approvedsendmail(approvemail){
 	  
 	let mailbody = {
-              "to": "xxxx@gmail.com",
+              "to": approvemail,
               "from": "chris.hembrom@gmail.com",
               "subject": "Registration Approved in Jumpstat",
               "text": "Registration is approved by Admin...Plz check on http://jumpstart-portal-test.mybluemix.net/ ",
@@ -42,9 +42,9 @@ export class AdminComponent implements OnInit {
             });
    }
    
-  rejectedsendmail(){
+  rejectedsendmail(rejectmail){
    let mailbody = {
-              "to": "xxxx@gmail.com",
+              "to": rejectmail,
               "from": "chris.hembrom@gmail.com",
               "subject": "Registration Rejected in Jumpstat",
               "text": "Registration is reected by Admin ",
@@ -105,7 +105,7 @@ export class AdminComponent implements OnInit {
 		  this.enable_flag = true;
         }); 
 	  if(this.enable_flag == true)
-	     this.approvedsendmail();
+	     this.approvedsendmail(userapproveData.email);
   }
   
   reject(userrejectData){
@@ -116,7 +116,7 @@ export class AdminComponent implements OnInit {
 		  this.enable_flag1 = true;
         }); 
 	  if(this.enable_flag == true)	 
-	     this.rejectedsendmail();
+	     this.rejectedsendmail(userrejectData.email);
   }
 
 }
