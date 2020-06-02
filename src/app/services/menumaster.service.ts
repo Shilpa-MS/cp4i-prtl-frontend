@@ -89,6 +89,20 @@ export class MenumasterService {
   getNewUserRole(){
     return this.user_role;
   } 
+  
+  fetchAllAssmntUserData(){
+    return this.httpClient.get(`${this.API_URL}/fetchAllAssmntUserData`, httpOptions);
+  }
+  
+  fetchUserAssmntData(mail){
+    console.log("fetch data is",mail)
+    return this.httpClient.post(`${this.API_URL}/fetchUserAssmntData`,({"email":mail}), httpOptions);
+  }
+  
+    UpdateAssmntUserStatus(updateuserdata){
+    console.log("status update data is",updateuserdata)
+    return this.httpClient.post(`${this.API_URL}/UpdateAssmntUserStatus`,updateuserdata, httpOptions);
+  }
 
  
 }
