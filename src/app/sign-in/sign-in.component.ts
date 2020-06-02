@@ -110,6 +110,7 @@ export class SignInComponent implements OnInit {
 			    localStorage.setItem('user',this.loginData.email);
                 this.menuService.getNewUser();
 	            this.menuService.setNewUserRole(this.loginData.role);
+				this.menuService.setUserName(this.loginData.username);
 				
 	            if(this.loginData.role == 'user'){
                   this.router.navigate(['/home']);
@@ -165,6 +166,7 @@ export class SignInComponent implements OnInit {
           this.menuService.setNewUser(data.ops[0].email);
           //this.menuService.setUserappId(data.ops[0].app_id);
           this.router.navigate(['/signin']);
+		  alert("registered successfully!")
           this.registrationForm.reset();
           this.sendmail(regFormValue.email);
         });

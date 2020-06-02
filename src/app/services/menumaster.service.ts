@@ -14,6 +14,7 @@ export class MenumasterService {
   API_URL = environment.apiUrl;
   user_role : string;
   user_mail: string;
+  name: string;
  
 
   constructor(private httpClient: HttpClient) { 
@@ -102,6 +103,15 @@ export class MenumasterService {
     UpdateAssmntUserStatus(updateuserdata){
     console.log("status update data is",updateuserdata)
     return this.httpClient.post(`${this.API_URL}/UpdateAssmntUserStatus`,updateuserdata, httpOptions);
+  }
+  
+    setUserName(uname){
+    this.name = uname;
+    console.log("new user name",this.name);
+  }
+
+  getUserName(){
+    return this.name;
   }
 
  
