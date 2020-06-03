@@ -62,7 +62,7 @@
                 }
               ]
             },
-			"staging": {
+            "staging": {
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
@@ -153,6 +153,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "cp4i-prtl"
+    }
+  },
+  "defaultProject": "cp4i-prtl",
+  "cli": {
+    "analytics": false
+  }
 }
