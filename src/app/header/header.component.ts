@@ -12,7 +12,7 @@ export class HeaderComponent implements OnInit {
 
   user:string=null;
   
-  constructor(public authService:AuthService,private menuService: MenumasterService) {
+  constructor(public authService:AuthService,public menuService: MenumasterService) {
     this.user = localStorage.getItem('user');
 	console.log("userdata is",this.user);
 	 this.menuService.setNewUser(this.user);
