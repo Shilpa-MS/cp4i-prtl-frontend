@@ -45,7 +45,8 @@
 							     <input [disabled]="user.email != emailId" class="textarea" [(ngModel)]="user.comment">
 							   </td>
                                <td >
-                                  <button [disabled]="user.email != emailId" type="button" class="btn btn-success" (click)="approve(user)" >
+                                  <button [disabled]="user.email != emailId" type="button" class="btn btn-success" 
+								          style="margin-right: 1em" (click)="approve(user)" >
                                      Approve
                                   </button>
 			                      <button [disabled]="user.email != emailId" type="button" class="btn btn-danger"  (click)="reject(user)">
@@ -114,7 +115,8 @@
 							     <input [disabled]="user.email != assmnt_emailId" class="textarea" [(ngModel)]="user.comment">
 							   </td>
                                <td >
-                                  <button [disabled]="user.email != assmnt_emailId" type="button" class="btn btn-success" (click)="assmnt_approve(user)" >
+                                  <button [disabled]="user.email != assmnt_emailId" type="button" class="btn btn-success" 
+								          style="margin-right: 1em" (click)="assmnt_approve(user)" >
                                      Approve
                                   </button>
 			                      <button [disabled]="user.email != assmnt_emailId" type="button" class="btn btn-danger"  (click)="assmnt_reject(user)">

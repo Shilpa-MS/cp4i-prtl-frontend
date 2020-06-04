@@ -163,7 +163,7 @@ export class SignInComponent implements OnInit {
         this.menuService.JumpstartUserRegister(payload).subscribe((data: any) => {
           
           console.log("newUserFlag resig",data.ops[0].email);
-          this.menuService.setNewUser(data.ops[0].email);
+          //this.menuService.setNewUser(data.ops[0].email);
           //this.menuService.setUserappId(data.ops[0].app_id);
           this.router.navigate(['/signin']);
 		  alert("registered successfully!")

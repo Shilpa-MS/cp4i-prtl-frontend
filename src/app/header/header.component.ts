@@ -11,12 +11,23 @@ import { MenumasterService } from './../services/menumaster.service';
 export class HeaderComponent implements OnInit {
 
   user:string=null;
+  
   constructor(public authService:AuthService,private menuService: MenumasterService) {
-    
+    this.user = localStorage.getItem('user');
+	console.log("userdata is",this.user);
+	 this.menuService.setNewUser(this.user);
    }
 
   ngOnInit() {
-    //this.user = this.authService.getUser();
+    if (localStorage.getItem('user'))
+	{
+		 //this.ngxService.start();
+	     this.menuService.getNewUser();
+		 this.menuService.JumpstartfetchUserData(this.user).subscribe((data: any) => {
+			this.menuService.setUserName(data[0].username);
+			console.log("username is",data);
+	   });
+	}
   }
 
   
