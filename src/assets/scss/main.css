@@ -5492,6 +5492,7 @@ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00000000', en
 .carousel-control .icon-next:before {
 	content: '\203a';
 }
+/*change add margin-bottom*/
 .carousel-indicators {
 	position: absolute;
 	bottom: 10px;
@@ -5502,6 +5503,7 @@ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00000000', en
 	padding-left: 0;
 	list-style: none;
 	text-align: center;
+	margin-bottom: 8em;
 }
 .carousel-indicators li {
 	display: inline-block;
@@ -6136,9 +6138,11 @@ body #myCarousel .carousel {
 body #myCarousel .slider_btn .btn {
 	margin: 5px 10px;
 }
+/*height change 600 to 500*/
 body #myCarousel .carousel-inner {
-	height: 600px;
+	height: 400px;
 }
+/*height change 100 to 80*/
 body #myCarousel .item {
 	background-position: 50% 50%;
 	background-repeat: no-repeat;
