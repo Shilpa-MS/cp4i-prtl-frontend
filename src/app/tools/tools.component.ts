@@ -23,9 +23,9 @@ export class ToolsComponent implements OnInit {
 	  this.datafoundFlag = true;
       this.userdata = data[0].access;
       console.log("userdata data is",this.userdata);
-	  
+	  this.ngxService.stop();
     });
-    this.ngxService.stop();	
+    	
   }
   
   alertcall(){
