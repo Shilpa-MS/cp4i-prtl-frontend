@@ -153,12 +153,6 @@ export class AdminComponent implements OnInit {
   
   approve(userapproveData){
 	  userapproveData.user_status = "approved"; 	
-      /* if (userapproveData.access[1].assessment == true)
-	  {
-		  userapproveData.app_id = '11';
-	  } else {
-		  userapproveData.app_id = '';
-	  } */
 	  console.log("approved data is", userapproveData);
 	  this.menuService.UpdateUserStatus(userapproveData).subscribe((data: any) => {     
           //console.log("userdata approve data is admin",this.userdata,userapproveData);
@@ -172,7 +166,7 @@ export class AdminComponent implements OnInit {
   reject(userrejectData){
 	  userrejectData.user_status = "rejected";
 	  this.menuService.UpdateUserStatus(userrejectData).subscribe((data: any) => {     
-          //console.log("userdata approve data is admin",this.userdata,userrejectData);
+          console.log("userdata approve data is admin",this.userdata,userrejectData);
 		  this.getUser();
 		  this.enable_flag1 = true;
         }); 

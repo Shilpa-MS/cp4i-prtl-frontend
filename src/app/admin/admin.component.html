@@ -116,33 +116,33 @@
 							   <td data-title="Access" >
 							     <div class="row">
 								   <label class="col-sm-12 col-md-8">
-								     <input type="checkbox"
+								     <input type="checkbox" [disabled]="user.user_status == 'rejected'"
 								          [checked]="user.access[0].jumpstart == true"
 										  (change)="result($event,'jumpstart',user)"><span style="color:black;margin-left:.5em">jumpstart</span>
 									</label>
 									<label class="col-sm-12 col-md-8">
-                                     <input type="checkbox"
+                                     <input type="checkbox" [disabled]="user.user_status == 'rejected'"
 								           [checked]="user.access[1].assessment == true"
 										  (change)="result($event,'assessment',user)"><span style="color:black;margin-left:.5em">Assesment Toolkit</span>
 								    </label>
 									<label class="col-sm-12 col-md-8">
-									 <input type="checkbox"
+									 <input type="checkbox" [disabled]="user.user_status == 'rejected'"
 								           [checked]="user.access[2].integration == true"
 										  (change)="result($event,'integration',user)"><span style="color:black;margin-left:.5em">Integration Patterns</span>
 									</label>	  
 								    <label class="col-sm-12 col-md-8">
-									 <input type="checkbox"
+									 <input type="checkbox" [disabled]="user.user_status == 'rejected'"
 								           [checked]="user.access[3].oneclick == true"
 										  (change)="result($event,'oneclick',user)"><span style="color:black;margin-left:.5em">One Click Deployment</span>
 									</label>	  
 									<label class="col-sm-12 col-md-8">
-									 <input type="checkbox"
+									 <input type="checkbox" [disabled]="user.user_status == 'rejected'"
 								           [checked]="user.access[4].multicloud == true"
 										  (change)="result($event,'multicloud',user)"><span style="color:black;margin-left:.5em">Multi Cloud Deployment</span>
 								     </label>
 									</div>
 							       
-									<button  type="button" class="btn btn-success" 
+									<button  [disabled]="user.user_status == 'rejected'" type="button" class="btn btn-success" 
 								          style="margin-right: 1em" (click)="approve(user)" >
                                      Update
                                   </button>
