@@ -102,9 +102,10 @@ export class SignInComponent implements OnInit {
 	  
             //console.log(data," data");
             this.loginData = data.xuser;
-			//console.log("this.loginData ",this.loginData);
+			console.log("this.loginData ",this.loginData);
 			
-			if(this.loginData.status == "approved" || this.loginData.role == 'admin')
+			if((this.loginData.user_status == "approved" && this.loginData.access[0].jumpstart==true) || 
+			   (this.loginData.role == 'admin' && this.loginData.access[0].jumpstart==true))
 			{
 				this.menuService.setNewUser(this.loginData.email);
 			    localStorage.setItem('user',this.loginData.email);
@@ -146,20 +147,25 @@ export class SignInComponent implements OnInit {
       if(data.length <= 0 )
       {
 		
-		var payload = {
-		   "username":regFormValue.username,
-		   "email":regFormValue.email,
-		   "companyname":regFormValue.companyname,
-		   "designation":regFormValue.designation,
-		   "password":regFormValue.password,
-		   "securityfaq_one":regFormValue.securityfaq_one,
-		   "securityanswer_one":regFormValue.securityanswer_one,
-		   "securityfaq_two":regFormValue.securityfaq_two,
-		   "securityanswer_two":regFormValue.securityanswer_two,
-		   "role":'user',
-		   "status":"pending",
-		   "comment":''
-		}
+		var payload={
+         'username':regFormValue.username,
+         'email': regFormValue.email,
+         'companyname':regFormValue.companyname,
+         'designation':regFormValue.designation,
+         'app_id': '11',
+         'password':regFormValue.password,
+	     'securityfaq_one':regFormValue.securityfaq_one,
+	     'securityanswer_one':regFormValue.securityanswer_one,
+	     'securityfaq_two':regFormValue.securityfaq_two,
+	     'securityanswer_two':regFormValue.securityanswer_two,
+         'user_type':'new',
+         'status': 'Yet to Start',
+         'role':'user',
+	     'user_status':'pending',
+	     'access': [{'jumpstart':false},{'assessment':false},{'integration':false},{'oneclick':false},{'multicloud':false}],
+	     'comment':''
+      }
+
         this.menuService.JumpstartUserRegister(payload).subscribe((data: any) => {
           
           console.log("newUserFlag resig",data.ops[0].email);

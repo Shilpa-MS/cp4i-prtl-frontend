@@ -13,8 +13,8 @@
                    <ul class="nav nav-pills">
                       <li class="active"><a data-toggle="pill" href="#menu1">Action For Jumpstart User</a></li>
                       <li><a data-toggle="pill" href="#menu2">Jumpstart User Archive Data</a></li>
-					  <li><a data-toggle="pill" href="#menu3">Action For Assesment User</a></li>
-                      <li><a data-toggle="pill" href="#menu4">Assesment User Archive Data</a></li>
+<!-- 					  <li><a data-toggle="pill" href="#menu3">Action For Assesment User</a></li>
+                      <li><a data-toggle="pill" href="#menu4">Assesment User Archive Data</a></li> -->
                    </ul>
 				   <div class="tab-content">
 				   
@@ -22,14 +22,15 @@
                          <table class="table table-responsive">
                            <thead>
                              <tr>
-                               <th>#</th>
-                               <th>Email</th>
-							   <th>Comments</th>
-		                       <th></th>
+                               <th style="width:5%">#</th>
+                               <th style="width:20%">Email</th>
+		                       <th style= "width:30%">Access</th>
+							   <th style="width:15%">Comments</th>
+							   <th></th>
                              </tr>
                            </thead>
                            <tbody>
-                              <tr *ngFor="let user of UserPendingData"> <!-- | paginate:{id: 'versionPagination1', itemsPerPage: 5, currentPage:p1} -->
+                              <tr *ngFor="let user of UserPendingData,let i = index">
                                <td data-title="#">
                                   <input type="radio" class="radiostyle" id="defaultChecked" (click)="inputselect(user)" name="defaultExampleRadios" >
                                </td>
@@ -41,6 +42,36 @@
 									   Designation: {{user.designation}}               
                                     </div>
 							   </td>
+							   <td data-title="Access" >
+							     <div class="row">
+								   <label class="col-sm-12 col-md-8">
+								     <input [disabled]="user.email != emailId" type="checkbox"
+								          [checked]="user.access[0].jumpstart == true"
+										  (change)="result($event,'jumpstart',user)"><span style="color:black;margin-left:.5em">jumpstart</span>
+									</label>
+									<label class="col-sm-12 col-md-8">
+                                     <input [disabled]="user.email != emailId" type="checkbox"
+								          [checked]="user.access[1].assessment == true"
+										  (change)="result($event,'assessment',user)"><span style="color:black;margin-left:.5em">Assesment Toolkit</span>
+								    </label>
+									<label class="col-sm-12 col-md-8">
+									 <input [disabled]="user.email != emailId" type="checkbox"
+								          [checked]="user.access[2].integration == true"
+										  (change)="result($event,'integration',user)"><span style="color:black;margin-left:.5em">Integration Patterns</span>
+									</label>	  
+								    <label class="col-sm-12 col-md-8">
+									 <input [disabled]="user.email != emailId" type="checkbox"
+								          [checked]="user.access[3].oneclick == true"
+										  (change)="result($event,'oneclick',user)"><span style="color:black;margin-left:.5em">One Click Deployment</span>
+									</label>	  
+									<label class="col-sm-12 col-md-8">
+									 <input [disabled]="user.email != emailId" type="checkbox"
+								          [checked]="user.access[4].multicloud == true"
+										  (change)="result($event,'multicloud',user)"><span style="color:black;margin-left:.5em">Multi Cloud Deployment</span>
+								     </label>
+									</div>
+							   </td>
+							   
 							   <td data-title="Comments">
 							     <input [disabled]="user.email != emailId" class="textarea" [(ngModel)]="user.comment">
 							   </td>
@@ -56,7 +87,6 @@
                              </tr>							 
                            </tbody>
                          </table>
-						 <!-- <pagination-controls id="versionPagination1" (pageChange)="p1=$event" style="float: right"></pagination-controls> -->
                       </div>
 					  
                       <div id="menu2" class="tab-pane fade">
@@ -66,6 +96,7 @@
                                <th>Email</th>
 							   <th>Stauts</th>
 							   <th>Comments</th>
+							   <th>Access</th>
                              </tr>
                            </thead>
                            <tbody>
@@ -78,84 +109,50 @@
 									   Designation: {{user.designation}}               
                                     </div>
 							   </td>
-                               <td data-title="Status">{{user.status}}</td>
+                               <td data-title="Status">{{user.user_status}}</td>
 							   <td data-title="Comments">
 							        <input class="textarea" [(ngModel)]="user.comment" disabled>
+							   </td>
+							   <td data-title="Access" >
+							     <div class="row">
+								   <label class="col-sm-12 col-md-8">
+								     <input type="checkbox"
+								          [checked]="user.access[0].jumpstart == true"
+										  (change)="result($event,'jumpstart',user)"><span style="color:black;margin-left:.5em">jumpstart</span>
+									</label>
+									<label class="col-sm-12 col-md-8">
+                                     <input type="checkbox"
+								           [checked]="user.access[1].assessment == true"
+										  (change)="result($event,'assessment',user)"><span style="color:black;margin-left:.5em">Assesment Toolkit</span>
+								    </label>
+									<label class="col-sm-12 col-md-8">
+									 <input type="checkbox"
+								           [checked]="user.access[2].integration == true"
+										  (change)="result($event,'integration',user)"><span style="color:black;margin-left:.5em">Integration Patterns</span>
+									</label>	  
+								    <label class="col-sm-12 col-md-8">
+									 <input type="checkbox"
+								           [checked]="user.access[3].oneclick == true"
+										  (change)="result($event,'oneclick',user)"><span style="color:black;margin-left:.5em">One Click Deployment</span>
+									</label>	  
+									<label class="col-sm-12 col-md-8">
+									 <input type="checkbox"
+								           [checked]="user.access[4].multicloud == true"
+										  (change)="result($event,'multicloud',user)"><span style="color:black;margin-left:.5em">Multi Cloud Deployment</span>
+								     </label>
+									</div>
+							       
+									<button  type="button" class="btn btn-success" 
+								          style="margin-right: 1em" (click)="approve(user)" >
+                                     Update
+                                  </button>
 							   </td>
                              </tr>
                            </tbody>
                          </table>
 						  <!-- <pagination-controls id="versionPagination2" (pageChange)="p2=$event" style="float: right"></pagination-controls> -->
                       </div>
-					  
-					  <div id="menu3" class="tab-pane fade">
-                         <table class="table table-responsive">
-                           <thead>
-                             <tr>
-                               <th>#</th>
-                               <th>Email</th>
-							   <th>Comments</th>
-		                       <th></th>
-                             </tr>
-                           </thead>
-                           <tbody>
-                              <tr *ngFor="let user of assmnt_UserPendingData"> 
-                               <td data-title="#">
-                                  <input type="radio" class="radiostyle" id="defaultChecked" (click)="assmnt_inputselect(user)" name="defaultExampleRadios" >
-                               </td>
-                               <td data-title="Email">
-							        <a class=" dropdown-toggle" data-toggle="dropdown" data-trigger="hover" href="#">{{user.email}}</a>
-                                    <div class="dropdown-menu addresspop">
-                                       User Name: {{user.username}} 
-									   Company Name: {{user.companyname}} 
-									   Designation: {{user.designation}}               
-                                    </div>
-							   </td>
-							   <td data-title="Comments">
-							     <input [disabled]="user.email != assmnt_emailId" class="textarea" [(ngModel)]="user.comment">
-							   </td>
-                               <td >
-                                  <button [disabled]="user.email != assmnt_emailId" type="button" class="btn btn-success" 
-								          style="margin-right: 1em" (click)="assmnt_approve(user)" >
-                                     Approve
-                                  </button>
-			                      <button [disabled]="user.email != assmnt_emailId" type="button" class="btn btn-danger"  (click)="assmnt_reject(user)">
-                                     Reject
-                                  </button>
-                               </td>
-                             </tr>							 
-                           </tbody>
-                         </table>
-                      </div>
-					  
-                      <div id="menu4" class="tab-pane fade">
-                         <table class="table">
-                           <thead>
-                             <tr>
-                               <th>Email</th>
-							   <th>Stauts</th>
-							   <th>Comments</th>
-                             </tr>
-                           </thead>
-                           <tbody>
-                              <tr *ngFor="let user of assmnt_UserHistoryData"> 
-                               <td data-title="Email">
-                                    <a class=" dropdown-toggle" data-toggle="dropdown" data-trigger="hover" href="#">{{user.email}}</a>
-                                    <div class="dropdown-menu addresspop">
-                                       User Name: {{user.username}} 
-									   Company Name: {{user.companyname}} 
-									   Designation: {{user.designation}}               
-                                    </div>
-							   </td>
-                               <td data-title="Status">{{user.user_status}}</td>
-							   <td data-title="Comments">
-							        <input class="textarea" [(ngModel)]="user.comment" disabled>
-							   </td>
-                             </tr>
-                           </tbody>
-                         </table>
-                      </div>
-					  
+					  					  
                    </div>
                 </div>
 				

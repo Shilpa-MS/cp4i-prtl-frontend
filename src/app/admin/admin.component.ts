@@ -18,25 +18,66 @@ export class AdminComponent implements OnInit {
 	UserHistoryData = [];
 	enable_flag:boolean = false;
 	enable_flag1:boolean = false;
-	assmnt_userdata: any;
-	assmnt_UserStat: any;
-	assmnt_emailId: string;
-	assmnt_UserPendingData = [];
-	assmnt_UserHistoryData = [];
-	assmnt_enable_flag:boolean = false;
-	assmnt_enable_flag1:boolean = false;
+
 
   constructor(private menuService: MenumasterService, private ngxService: NgxUiLoaderService) { }
 
   index1_jumpstart = 0;
   index2_jumpstart = 0;
   
-  index1_assmnt = 0;
-  index2_assmnt = 0;
   
   ngOnInit() {
      this.getUser();
-	 this.fetchAllAssmntUserData();
+  }
+  
+  result(event,a,user){
+	  console.log("rrrrrr",event,a);
+	  if ( a == 'jumpstart')
+	  {
+        if (event.target.checked == true)
+		{
+		  user.access[0].jumpstart = true;
+        }else{
+			user.access[0].jumpstart = false;
+		}
+      }
+      if ( a == 'assessment')
+	  {
+        if (event.target.checked == true)
+		{
+		  user.access[1].assessment = true;
+        }else{
+		  user.access[1].assessment = false;
+		}
+      }	
+	  if ( a == 'integration')
+	  {
+        if (event.target.checked == true)
+		{
+		  user.access[2].integration = true;
+        }else{
+		  user.access[2].integration = false;
+		}
+      }
+	  if ( a == 'oneclick')
+	  {
+        if (event.target.checked == true)
+		{
+		  user.access[3].oneclick = true;
+        }else{
+		  user.access[3].oneclick = false;
+		}
+      }
+	  if ( a == 'multicloud')
+	  {
+        if (event.target.checked == true)
+		{
+		  user.access[4].multicloud = true;
+        }else{
+		  user.access[4].multicloud = false;
+		}
+      }
+      console.log("selected",user);	  
   }
   
    approvedsendmail(approvemail){
@@ -78,16 +119,16 @@ export class AdminComponent implements OnInit {
 	  this.ngxService.start();
 	  this.menuService.fetchAllUserData().subscribe((data: any) => {
          this.userdata = data;
-         //console.log("userdata data is admin",this.userdata);
+         console.log("userdata data is admin",this.userdata[1].access);
 		 this.userdata.forEach(userFulldata => {
-			//console.log("jkjjkkllk",userFulldata,userFulldata.status);
-               if(userFulldata.status == "pending") {
+			//console.log("jkjjkkllk",userFulldata.access,userFulldata.status);
+               if(userFulldata.user_status == "pending") {
                   this.UserPendingData[this.index1_jumpstart] = userFulldata;
                   this.index1_jumpstart++;
-				  //console.log("pending",this.UserPendingData);
+				 // console.log("pending",this.UserPendingData);
 				  this.enable_flag = true;
                }
-		        if(userFulldata.status == "approved" || userFulldata.status == "rejected") {
+		        if(userFulldata.user_status == "approved" || userFulldata.user_status == "rejected") {
                   this.UserHistoryData[this.index2_jumpstart] = userFulldata;
 			      this.index2_jumpstart++;
 				  //console.log("approved",this.UserHistoryData);
@@ -98,32 +139,38 @@ export class AdminComponent implements OnInit {
    });	  
   }
   
-  statusUpdate(){	  
-	  this.userdata.status = 'in progress';	  
+  /* statusUpdate(){	  
+	  this.userdata. = 'in progress';	  
 	  this.menuService.UpdateUserStatus(this.userdata).subscribe((data: any) => {     
           //console.log("userstatus is", this.userdata);
         });   
-  }
+  } */
   
   inputselect(userselectdata){
-	this.assmnt_emailId = "";
 	this.emailId = userselectdata.email;
 	console.log("emailId data", this.emailId);
   }
   
   approve(userapproveData){
-	  userapproveData.status = "approved";	  
+	  userapproveData.user_status = "approved"; 	
+      /* if (userapproveData.access[1].assessment == true)
+	  {
+		  userapproveData.app_id = '11';
+	  } else {
+		  userapproveData.app_id = '';
+	  } */
+	  console.log("approved data is", userapproveData);
 	  this.menuService.UpdateUserStatus(userapproveData).subscribe((data: any) => {     
           //console.log("userdata approve data is admin",this.userdata,userapproveData);
 		  this.getUser();
 		  this.enable_flag = true;
         }); 
 	  if(this.enable_flag == true)
-	     this.approvedsendmail(userapproveData.email);
+	     this.approvedsendmail(userapproveData.email); 
   }
   
   reject(userrejectData){
-	  userrejectData.status = "rejected";
+	  userrejectData.user_status = "rejected";
 	  this.menuService.UpdateUserStatus(userrejectData).subscribe((data: any) => {     
           //console.log("userdata approve data is admin",this.userdata,userrejectData);
 		  this.getUser();
@@ -133,62 +180,4 @@ export class AdminComponent implements OnInit {
 	     this.rejectedsendmail(userrejectData.email);
   }
   
-  fetchAllAssmntUserData()
-  {
-	  this.index1_assmnt = 0;
-	  this.index2_assmnt = 0;
-	  this.assmnt_UserPendingData = [];
-	  this.assmnt_UserHistoryData = [];
-	  
-	  this.ngxService.start();
-	  this.menuService.fetchAllAssmntUserData().subscribe((data: any) => {
-         this.assmnt_userdata = data;
-         console.log("portal_userdata data is admin",this.assmnt_userdata);
-		 this.assmnt_userdata.forEach(userFulldata => {
-               if(userFulldata.user_status == "pending") {
-                  this.assmnt_UserPendingData[this.index1_assmnt] = userFulldata;
-                  this.index1_assmnt++;
-				  //console.log("pending",this.UserPendingData);
-				  this.assmnt_enable_flag = true;
-               }
-		        if(userFulldata.user_status == "approved" || userFulldata.status == "rejected") {
-                  this.assmnt_UserHistoryData[this.index2_assmnt] = userFulldata;
-			      this.index2_assmnt++;
-				  //console.log("approved",this.UserHistoryData);
-				  this.assmnt_enable_flag1 = true;
-               } 			   
-      });
-	  this.ngxService.stop();
-   });
-  }
-  
-  assmnt_inputselect(userselectdata){
-	this.emailId = "";
-	this.assmnt_emailId = userselectdata.email;
-	console.log("assmnt_emailId data", this.assmnt_emailId);
-  }
-  
-  assmnt_approve(userapproveData){
-	  userapproveData.user_status = "approved";	  
-	  this.menuService.UpdateAssmntUserStatus(userapproveData).subscribe((data: any) => {     
-          console.log("assmnt userdata approve data is admin",this.userdata,userapproveData);
-		  this.fetchAllAssmntUserData();
-		  this.enable_flag = true;
-        }); 
-	  if(this.enable_flag == true)
-	     this.approvedsendmail(userapproveData.email);
-  }
-  
-  assmnt_reject(userrejectData){
-	  userrejectData.user_status = "rejected";
-	  this.menuService.UpdateAssmntUserStatus(userrejectData).subscribe((data: any) => {     
-          console.log("assmnt userdata approve data is admin",this.userdata,userrejectData);
-		  this.fetchAllAssmntUserData();
-		  this.enable_flag1 = true;
-        }); 
-	  if(this.enable_flag == true)	 
-	     this.rejectedsendmail(userrejectData.email);
-  }
-
-
 }
