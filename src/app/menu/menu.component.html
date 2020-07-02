@@ -1,34 +1,101 @@
 <header>
-    <nav class="navbar navbar-inverse">
-        <div class="container">
-            <div class="row">
-               
-                    <div class="navbar-header">
-                        <button type="button" id="navclose" #navclose class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-				            <span class="sr-only">Toggle navigation</span>
-				            <span class="icon-bar"></span>
-				            <span class="icon-bar"></span>
-				            <span class="icon-bar"></span>
-			            </button>
+  <nav class="navbar navbar-inverse">
+    <div class="container">
+      <div class="row">
+        <div class="navbar-header">
+          <button
+            type="button"
+            id="navclose"
+            #navclose
+            class="navbar-toggle collapsed"
+            data-toggle="collapse"
+            data-target="#navbar"
+            aria-expanded="false"
+            aria-controls="navbar"
+          >
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
 
-                        <a class="navbar-brand" routerLink="/home">
-                            <h2 style="color:black;font-size:22px">TCS JUMPSTART<span>PAK FOR</span></h2><h2 style="color:#159eee;font-size:26px">INTEGRATION</h2></a>
-							<span class="icon-bar"><img class="logo-img" style="height: 58px;" src="assets/img/logo_tcs.png" ></span>
+          <a class="navbar-brand" routerLink="/home">
+            <h2 style="color: black; font-size: 22px;">
+              TCS JUMPSTART<span>PAK FOR</span>
+            </h2>
+            <h2 style="color: #159eee; font-size: 26px;">INTEGRATION</h2></a
+          >
 
-                    </div>
-                <div id="navbar" class="collapse navbar-collapse navbar-right">
-                    <ul *ngIf="MenumasterService.getNewUser()" class="nav navbar-nav" style="margin: 0px 58px 0px;">
-                        <li><a routerLink="about" routerLinkActive="active" (click)="nav()">About</a></li>
-                        <li><a routerLink="solutionsServices" routerLinkActive="active" (click)="nav()">Services & Solutions</a></li>
-                        <li><a routerLink="tools" routerLinkActive="active" (click)="nav()" >Tools</a></li>
-                        <li><a routerLink="bestPractices" routerLinkActive="active" (click)="nav()" >Best Practices</a></li>
-                        <li ><a routerLink="stories" routerLinkActive="active" (click)="nav()" >Stories</a></li>
-						<li ><a routerLink="faq" routerLinkActive="active" (click)="nav()">FAQ</a></li>
-						<li *ngIf="this.user_role == 'admin' || MenumasterService.getNewUserRole()=='admin'"><a routerLink="admin" routerLinkActive="active" (click)="nav()" >Admin</a></li>
-                        <!-- <li *ngIf="!MenumasterService.getNewUser()"><a routerLink="signin" routerLinkActive="active">Login/Register</a></li> -->
-                        <li ><a href="" (click)="logout()">Logout</a></li>
+          <span class="icon-bar"
+            ><img
+              class="logo-img"
+              style="height: 58px;"
+              src="assets/img/logo_tcs.png" />
+            <em>Download User's Guide</em>
+            <u
+              ><a
+                href="assets/doc/TCS Jumpstart Portal User Guide.pdf"
+                target="_blank"
+                ><i class="fa fa-download"></i></a></u
+          ></span>
+        </div>
 
-                        <!-- <li><a href="about.html">About</a></li>
+        <div id="navbar" class="collapse navbar-collapse navbar-right">
+          <ul
+            *ngIf="MenumasterService.getNewUser()"
+            class="nav navbar-nav"
+            style="margin: 0px 58px 0px;"
+          >
+            <li>
+              <a routerLink="about" routerLinkActive="active" (click)="nav()"
+                >About</a
+              >
+            </li>
+            <li>
+              <a
+                routerLink="solutionsServices"
+                routerLinkActive="active"
+                (click)="nav()"
+                >Services & Solutions</a
+              >
+            </li>
+            <li>
+              <a routerLink="tools" routerLinkActive="active" (click)="nav()"
+                >Tools</a
+              >
+            </li>
+            <li>
+              <a
+                routerLink="bestPractices"
+                routerLinkActive="active"
+                (click)="nav()"
+                >Best Practices</a
+              >
+            </li>
+            <li>
+              <a routerLink="stories" routerLinkActive="active" (click)="nav()"
+                >Stories</a
+              >
+            </li>
+            <li>
+              <a routerLink="faq" routerLinkActive="active" (click)="nav()"
+                >FAQ</a
+              >
+            </li>
+            <li
+              *ngIf="
+                this.user_role == 'admin' ||
+                MenumasterService.getNewUserRole() == 'admin'
+              "
+            >
+              <a routerLink="admin" routerLinkActive="active" (click)="nav()"
+                >Admin</a
+              >
+            </li>
+            <!-- <li *ngIf="!MenumasterService.getNewUser()"><a routerLink="signin" routerLinkActive="active">Login/Register</a></li> -->
+            <li><a href="" (click)="logout()">Logout</a></li>
+
+            <!-- <li><a href="about.html">About</a></li>
                         <li class="active"><a href="#">Home</a></li>
                         <li><a href="features.html">Features</a></li>
                         
@@ -37,14 +104,14 @@
                         <li><a href="contact.html">Contact</a></li>
                         <li><a href="login.html">Sign In</a></li>
                         <li><a href="registration.html">Sign Up</a></li> -->
-                    </ul>
-                    <!-- <ul *ngIf="!MenumasterService.getNewUser() == ''s" class="nav navbar-nav">
+          </ul>
+          <!-- <ul *ngIf="!MenumasterService.getNewUser() == ''s" class="nav navbar-nav">
                         <li ><a routerLink="signin" routerLinkActive="active">Login/Register</a></li>
                      
                     </ul> -->
-                </div>
-                <!--/.nav-collapse -->
-            </div>
         </div>
-    </nav>
+        <!--/.nav-collapse -->
+      </div>
+    </div>
+  </nav>
 </header>
