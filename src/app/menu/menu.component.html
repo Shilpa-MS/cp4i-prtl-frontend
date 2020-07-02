@@ -20,19 +20,20 @@
           </button>
 
           <a class="navbar-brand" routerLink="/home">
-            <h2 style="color: black; font-size: 22px;">
-              TCS JUMPSTART<span>PAK FOR</span>
+            <h2 style="color: black; font-size: 22px; padding: 2px;">
+              TCS JUMPSTART&nbsp;<span>PAK FOR</span>
             </h2>
             <h2 style="color: #159eee; font-size: 26px;">INTEGRATION</h2></a
           >
 
-          <span class="icon-bar"
+          <span class="icon-bar" style="width: 100px; height: 70px;"
             ><img
               class="logo-img"
-              style="height: 58px;"
+              style="height: 48px;"
               src="assets/img/logo_tcs.png"
             />
           </span>
+          <span></span>
           <em>Download User's Guide</em>
           <u
             ><a
@@ -46,7 +47,7 @@
           <ul
             *ngIf="MenumasterService.getNewUser()"
             class="nav navbar-nav"
-            style="margin: 0px 58px 0px;"
+            style="margin: 20px 40px 0px 0px;"
           >
             <li>
               <a routerLink="about" routerLinkActive="active" (click)="nav()"
