@@ -1,6 +1,9 @@
-* {box-sizing: border-box}
-body {font-family: "Lato", sans-serif;}
-
+* {
+  box-sizing: border-box;
+}
+body {
+  font-family: "Lato", sans-serif;
+}
 
 /* Style the tab */
 .tab {
@@ -16,14 +19,14 @@ body {font-family: "Lato", sans-serif;}
   display: block;
   background-color: inherit;
   color: black;
-  padding: 22px 16px;
+  padding: 20px 16px;
   width: 100%;
   border: none;
   outline: none;
   text-align: left;
   cursor: pointer;
   transition: 0.3s;
-  font-size: 17px;
+  font-size: 15px;
 }
 
 /* Change background color of buttons on hover */
@@ -36,7 +39,7 @@ body {font-family: "Lato", sans-serif;}
   background-color: #ccc;
 }
 
-.nav-link{
+.nav-link {
   color: white;
 }
 
@@ -44,12 +47,29 @@ body {font-family: "Lato", sans-serif;}
   float: left;
   padding: 0px 12px;
   border: 1px solid #ccc;
-  width: 78%;
+  width: 68%;
   border-left: none;
   height: 400px;
 }
-.tablinks{
-    padding: 16px 16px;
-    font-size: 20px;
+.vertical-tab-content-small {
+  float: left;
+  padding: 0px 6px;
+  border: 1px solid #ccc;
+  width: 68%;
+  border-left: none;
+  height: 400px;
+}
+.tablinks {
+  padding: 16px 16px;
+  font-size: 20px;
+  font-family: "Lato", sans-serif;
+}
+
+@media only screen and (max-width: 760px),
+  (min-device-width: 768px) and (max-device-width: 1024px) {
+  .tablinks {
+    padding: 16px 8px;
+    font-size: 16px;
     font-family: "Lato", sans-serif;
+  }
 }
