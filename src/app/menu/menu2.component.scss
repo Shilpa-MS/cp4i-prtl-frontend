@@ -1,0 +1,36 @@
+.jumpstart-text {
+  color: black;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.integration-text {
+  color: #159eee;
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+}
+
+@media only screen and (max-width: 414px) {
+  .integration-text {
+    color: #159eee;
+    font-size: 13px;
+    margin-top: -4px;
+    font-weight: bold;
+    text-align: center;
+  }
+  .jumpstart-text {
+    color: black;
+    font-size: 11px;
+    font-weight: bold;
+  }
+}
+a {
+  font-weight: bold;
+}
+img {
+  width: 100px;
+  height: 60px;
+  float: right;
+  margin-top: -80px;
+}
