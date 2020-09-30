@@ -1,9 +1,9 @@
 ---
 applications:
-- name: cp4i-prtl-frontend
-  memory: 256M
-  env:
-    NODE_ENV: cloud-foundry
-  path: ./dist/cp4i-prtl
-  buildpacks:
-    - staticfile_buildpack
+  - name: cp4i-prtl-frontend-1
+    memory: 256M
+    env:
+      NODE_ENV: cloud-foundry
+    path: ./dist/cp4i-prtl
+    buildpacks:
+      - staticfile_buildpack
