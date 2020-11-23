@@ -1,0 +1,34 @@
+{
+    "content" : [ 
+        {
+            "secQues" : "what is your pet name?",
+            "secSeq" : 1,
+            "status" : "A"
+        }, 
+        {
+            "secQues" : "what is your nick name?",
+            "secSeq" : 2,
+            "status" : "A"
+        }, 
+        {
+            "secQues" : "What was the house number and street name you lived in as a child?",
+            "secSeq" : 3,
+            "status" : "A"
+        }, 
+        {
+            "secQues" : "What were the last four digits of your childhood telephone number?",
+            "secSeq" : 4,
+            "status" : "A"
+        }, 
+        {
+            "secQues" : "What primary school did you attend?",
+            "secSeq" : 5,
+            "status" : "A"
+        }, 
+        {
+            "secQues" : "In what town or city was your first full time job?",
+            "secSeq" : 6,
+            "status" : "A"
+        }
+    ]
+}

@@ -1,0 +1,14 @@
+{
+    "username" : "admin",
+    "email" : "admin.jumpstart@tcs.com",
+    "companyname" : "admin",
+    "designation" : "admin",
+    "password" : "$2b$10$slEmHWH.hcPsbzrpZTS33egv.RhhOqevshAtDRYk7/iyDxhALmsx.",
+    "securityfaq_one" : "",
+    "securityanswer_one" : "",
+    "securityfaq_two" : "",
+    "securityanswer_two" : "",
+    "role" : "admin",
+    "status" : "",
+    "comment" : ""
+}

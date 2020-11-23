@@ -1,0 +1,91 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  font-family: "Lato", sans-serif;
+}
+
+/* Style the tab */
+.tab {
+  float: left;
+  border: 1px solid #ccc;
+  background-color: #5bc0de;
+  width: 22%;
+  height: 400px;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+  display: block;
+  background-color: inherit;
+  color: black;
+  padding: 20px 16px;
+  width: 100%;
+  border: none;
+  outline: none;
+  text-align: left;
+  cursor: pointer;
+  transition: 0.3s;
+  font-size: 15px;
+}
+
+/* Change background color of buttons on hover */
+.tab nav-link:hover {
+  background-color: #ddd;
+}
+
+/* Create an active/current "tab button" class */
+.tab nav-link.active {
+  background-color: #ccc;
+}
+
+.nav-link {
+  color: white;
+}
+
+.vertical-tab-content {
+  float: left;
+  padding: 0px 12px;
+  border: 1px solid #ccc;
+  width: 68%;
+  border-left: none;
+  height: 400px;
+}
+.vertical-tab-content-small {
+  float: left;
+  padding: 0px 6px;
+  border: 1px solid #ccc;
+  width: 68%;
+  border-left: none;
+  height: 400px;
+}
+.tablinks {
+  padding: 16px 16px;
+  font-size: 20px;
+  font-family: "Lato", sans-serif;
+}
+
+@media only screen and (max-width: 414px) {
+  .tablinks {
+    padding: 8px 3px;
+    font-size: 14px;
+    font-family: "Lato", sans-serif;
+  }
+  .heading {
+    font-size: 16px;
+  }
+  .subheading-1 {
+    font-size: 12px;
+  }
+  p {
+    font-size: 12px;
+  }
+}
+.heading {
+  font-weight: bold;
+  font-size: 20px;
+}
+.subheading-1 {
+  font-size: 18px;
+  font-style: italic;
+}

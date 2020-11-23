@@ -1,0 +1,119 @@
+.container1{
+      background-color: lightgray;
+    border-style: solid;
+    border-color: darkgrey;
+    border-radius: 1em;
+}
+
+
+.nav-pills{
+  border-bottom-style: solid;
+  border-bottom-color: darkgrey;
+}
+
+.active{
+  background-color: darkgrey !important;
+}
+
+.nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
+    color: #fff;
+    background-color: #9e9c9c;
+}
+
+.addresspop{
+    width: 70px;
+    /* height: 103px; */
+    padding: 10px;
+    background: white;
+}
+
+.dropdown-menu{
+  position: initial !important;
+  float:none;
+}
+
+.ngx-pagination {
+    float: initial ;
+    margin-left: 60em;
+}
+
+.ngx-pagination .current {
+  background-color:#777b7d !important;
+}
+
+.show-for-sr{
+color:black;
+}
+
+
+/* 
+Generic Styling, for Desktops/Laptops 
+*/
+table { 
+  width: 100%; 
+  border-collapse: collapse; 
+}
+/* Zebra striping */
+tr:nth-of-type(odd) { 
+  background: #eee; 
+}
+th { 
+  background: #333; 
+  color: white; 
+  font-weight: bold; 
+}
+td, th { 
+  padding: 6px; 
+   
+  text-align: left; 
+}
+//border: 1px solid #ccc;
+
+@media 
+only screen and (max-width: 760px),
+(min-device-width: 768px) and (max-device-width: 1024px)  {
+
+	/* Force table to not be like tables anymore */
+	table, thead, tbody, th, td, tr { 
+		display: block; 
+	}
+	
+	/* Hide table headers (but not display: none;, for accessibility) */
+	thead tr { 
+		position: absolute;
+		top: -9999px;
+		left: -9999px;
+	}
+	
+	tr { border: 1px solid #ccc; }
+	
+	td { 
+		/* Behave  like a "row" */
+		border: none;
+		border-bottom: 1px solid #eee; 
+		position: relative;
+		padding-left: 50%; 
+	}
+	
+	td:before { 
+		/* Now like a table header */
+		position: absolute;
+		/* Top/left values mimic padding */
+		top: 6px;
+		left: 6px;
+		width: 45%; 
+		padding-right: 10px; 
+		white-space: nowrap;
+	}
+	/*
+	td:before {
+      content: attr(data-title);
+    }
+	
+	
+	Label the data
+	
+	td:nth-of-type(1) labelofth:before { content: "#"; }
+	td:nth-of-type(2):before { content: "Email"; }
+	td:nth-of-type(3):before { content: "Comments"; }*/
+}

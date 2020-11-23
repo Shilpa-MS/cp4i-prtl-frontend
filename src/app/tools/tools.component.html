@@ -1,0 +1,96 @@
+<section id="about-page-section-3">
+    <div class="container" style="height:700px">
+        <div class="row" >
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-7 text-align">
+                <div class="section-heading">
+                    <h2>Tools and Accelerators
+                        <span></span>
+                    </h2>
+                    <p class="subheading">Reusable assets for faster development and simplification… </p>
+                </div>
+                <p>
+                    <!-- TCS Integration experts are continuously trying to build reusable solutions and assets to address Technology Challenges -->
+                    <!-- and to find means to enable business adopt Modern Integration Solutions in a Quick and Risk Free Manner. -->
+                    <!-- <br> 
+                    <br> -->These Tools & Accelerators enables Organizations to Jump Start their journey to Integration Modernization
+                    by quickly upgrading/migrating to the latest Cloud Pak for Integration from the older version of the
+                    products in the target platform of their choice (Azure, AWS, GCP, IBM Cloud, Corporate Data Centre).
+                </p>
+               
+				<div>
+				
+				 <div class="w3-row-padding " style="margin-left:4em" *ngIf="datafoundFlag">
+				    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-5 text-align" >
+					 <div class="box1" routerLink="/assessmentToolkit" *ngIf="this.userdata[1].assessment == true">
+                      <div class="w3-col l3 m6 w3-margin-bottom">
+                         <img src="assets/img/assessment-kit-icon.png" alt="John" style="width:140px;height: 100px;margin-left:1.5em;margin-top:1em;">
+                         <button class="w3-button w3-block btn-warning" [disabled]="this.userdata[1].assessment != true">Assessment Toolkit</button>
+                      </div>	
+					 </div>
+					 <div class="box1" *ngIf="this.userdata[1].assessment != true" (click)="alertcall()">
+                      <div class="w3-col l3 m6 w3-margin-bottom">
+                         <img src="assets/img/assessment-kit-icon.png" alt="John" style="width:140px;height: 100px;margin-left:1.5em;margin-top:1em;">
+                         <button class="w3-button w3-block btn-warning" (click)="alertcall()" [disabled]="this.userdata[1].assessment != true">Assessment Toolkit</button>
+                      </div>	
+					 </div>
+					</div>
+					
+                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-5 text-align">
+					 <div class="box2" routerLink="/integrationPatterns" *ngIf="this.userdata[2].integration == true">
+                      <div class="w3-col l3 m6 w3-margin-bottom" >
+                        <img src="assets/img/patterns-icon.png" alt="Jane" style="width:140px;height: 100px;margin-left:1.5em;margin-top:1em;">
+                        <button class="w3-button w3-block btn-success" [disabled]="this.userdata[2].integration != true">Integration Patterns</button>
+                      </div>
+					 </div>
+					 <div class="box2" *ngIf="this.userdata[2].integration != true" (click)="alertcall()">
+                      <div class="w3-col l3 m6 w3-margin-bottom" >
+                        <img src="assets/img/patterns-icon.png" alt="Jane" style="width:140px;height: 100px;margin-left:1.5em;margin-top:1em;">
+                        <button class="w3-button w3-block btn-success" (click)="alertcall()" [disabled]="this.userdata[2].integration != true">Integration Patterns</button>
+                      </div>
+					 </div>
+				    </div>
+					<br>
+				    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-5 text-align">
+					 <div class="box3" routerLink="/oneClickDeployment" *ngIf="this.userdata[3].oneclick == true">
+                       <div class="w3-col l3 m6 w3-margin-bottom">
+                         <img src="assets/img/one-click-icon.png" alt="Jane" style="width:140px;height: 100px;margin-left:1.5em;margin-top:1em;">
+                        <button class="w3-button  w3-block btn-info" [disabled]="this.userdata[3].oneclick != true">One Click Deployment</button>
+                       </div>
+					  </div>
+					  <div class="box3" *ngIf="this.userdata[3].oneclick != true" (click)="alertcall()">
+                       <div class="w3-col l3 m6 w3-margin-bottom">
+                         <img src="assets/img/one-click-icon.png" alt="Jane" style="width:140px;height: 100px;margin-left:1.5em;margin-top:1em;">
+                        <button class="w3-button  w3-block btn-info" (click)="alertcall()" [disabled]="this.userdata[3].oneclick != true">One Click Deployment</button>
+                       </div>
+					  </div>
+					</div>
+					   
+					<div class="col-xs-12 col-sm-6 col-md-6 col-lg-5 text-align">
+                     <div class="box4" routerLink="/multiCloudDeployment" *ngIf="this.userdata[4].multicloud == true">					
+                      <div class="w3-col l3 m6 w3-margin-bottom">
+                        <img src="assets/img/multi-cloud-icon.png" alt="Jane" style="width:140px;height: 100px;margin-left:1.5em;margin-top:1em;">
+                        <button class="w3-button  w3-block btn-danger" [disabled]="this.userdata[4].multicloud != true">Multi Cloud Deployment</button>
+                      </div>
+                     </div>
+                     <div class="box4" *ngIf="this.userdata[4].multicloud != true" (click)="alertcall()">					
+                      <div class="w3-col l3 m6 w3-margin-bottom">
+                        <img src="assets/img/multi-cloud-icon.png" alt="Jane" style="width:140px;height: 100px;margin-left:1.5em;margin-top:1em;">
+                        <button class="w3-button  w3-block btn-danger" (click)="alertcall()" [disabled]="this.userdata[4].multicloud != true">Multi Cloud Deployment</button>
+                      </div>
+                     </div>					 
+                    </div>				   
+				 </div>
+				 
+				 </div>
+				
+               
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-5">
+                <img height="" width="auto" src="assets/img/iphone62.png" class="attachment-full img-responsive" alt="">
+            </div>
+            
+           
+        </div>
+      
+    </div>
+</section>
