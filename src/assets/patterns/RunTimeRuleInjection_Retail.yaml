@@ -1,0 +1,278 @@
+$integration: 'http://ibm.com/appconnect/integration/v2/integrationFile'
+integration:
+  type: api
+  trigger-interfaces:
+    trigger-interface-1:
+      triggers:
+        retrieveproductsProduct:
+          assembly:
+            $ref: '#/integration/assemblies/assembly-1'
+          input-context:
+            data: product
+          output-context:
+            data: productResponse
+      options:
+        resources:
+          - business-object: product
+            model:
+              $ref: '#/models/product'
+            triggers:
+              retrieveproducts: retrieveproductsProduct
+          - business-object: productResponse
+            model:
+              $ref: '#/models/productResponse'
+            triggers: {}
+      type: api-trigger
+  action-interfaces:
+    action-interface-1:
+      type: api-action
+      business-object: request
+      connector-type: http
+      account-name: Account 2
+      actions:
+        INVOKE: {}
+  assemblies:
+    assembly-1:
+      assembly:
+        execute:
+          - custom-action:
+              name: HTTP Invoke method
+              target:
+                $ref: '#/integration/action-interfaces/action-interface-1'
+              action: INVOKE
+              map:
+                customSchemas: {}
+                mappings:
+                  - method:
+                      template: POST
+                  - requestBody:
+                      template: '{"getProductDet":{{$Request.getProductDet}}}'
+                  - requestHeaders:
+                      expression: >-
+                        {"accept":"application/json","content-type":"application/json"}
+                  - url:
+                      template: >-
+                        http://retailbackendstub-http-ace.cloud-integration-ocp45-6fb0b86391cd68c8282858623a1dddff-0000.eu-gb.containers.appdomain.cloud/retail/proddataquery
+                $map: 'http://ibm.com/appconnect/map/v1'
+                input:
+                  - variable: Request
+                    $ref: '#/trigger/payload'
+          - parse:
+              name: JSON Parser Parse
+              parse-format: json
+              source:
+                template: '{{$HTTPInvokemethod.responseBody}}'
+                input:
+                  - variable: Request
+                    $ref: '#/trigger/payload'
+                  - variable: HTTPInvokemethod
+                    $ref: '#/node-output/HTTP Invoke method/response/payload'
+                  - variable: HTTPInvokemethodMetadata
+                    $ref: '#/node-output/HTTP Invoke method/response'
+              sample-data: |-
+                {"productResponse": [
+                      {
+                      "productName": "Laptop",
+                      "productBrand": "Sony",
+                      "cityCode": 1,
+                      "branchCode": 1,
+                      "discountPercent": 0,
+                      "priceBeforeDisc": 15000,
+                      "priceAfterDisc": 15000,
+                      "currentMonth": "December"
+                   },
+                      {
+                      "productName": "Laptop",
+                      "productBrand": "Sony",
+                      "cityCode": 1,
+                      "branchCode": 2,
+                      "discountPercent": 0,
+                      "priceBeforeDisc": 15000,
+                      "priceAfterDisc": 15000,
+                      "currentMonth": "December"
+                   }
+                ]}
+              output-schema:
+                $schema: 'http://json-schema.org/draft-04/schema#'
+                type: object
+                properties:
+                  productResponse:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        productName:
+                          type: string
+                        productBrand:
+                          type: string
+                        cityCode:
+                          type: number
+                        branchCode:
+                          type: number
+                        discountPercent:
+                          type: number
+                        priceBeforeDisc:
+                          type: number
+                        priceAfterDisc:
+                          type: number
+                        currentMonth:
+                          type: string
+                title: Parsed JSON
+          - for-each:
+              name: For each
+              assembly:
+                $ref: '#/integration/assemblies/assembly-2'
+              source:
+                expression: '$JSONParserParse.productResponse '
+                input:
+                  - variable: Request
+                    $ref: '#/trigger/payload'
+                  - variable: HTTPInvokemethod
+                    $ref: '#/node-output/HTTP Invoke method/response/payload'
+                  - variable: HTTPInvokemethodMetadata
+                    $ref: '#/node-output/HTTP Invoke method/response'
+                  - variable: JSONParserParse
+                    $ref: '#/node-output/JSON Parser Parse/response/payload'
+              mode: sequential
+              continue-on-error: true
+              map:
+                $map: 'http://ibm.com/appconnect/map/v1'
+                input:
+                  - variable: Foreachitem
+                    $ref: '#/block/For each/current-item'
+                  - variable: Request
+                    $ref: '#/trigger/payload'
+                  - variable: HTTPInvokemethod
+                    $ref: '#/node-output/HTTP Invoke method/response/payload'
+                  - variable: HTTPInvokemethodMetadata
+                    $ref: '#/node-output/HTTP Invoke method/response'
+                  - variable: JSONParserParse
+                    $ref: '#/node-output/JSON Parser Parse/response/payload'
+                mappings: []
+              display-name: JSON Parser productResponse
+          - response:
+              name: response-1
+              reply-maps:
+                - title: product successfully add custom operation
+                  status-code: '200'
+                  map:
+                    $map: 'http://ibm.com/appconnect/map/v1'
+                    input:
+                      - variable: Request
+                        $ref: '#/trigger/payload'
+                      - variable: HTTPInvokemethod
+                        $ref: '#/node-output/HTTP Invoke method/response/payload'
+                      - variable: HTTPInvokemethodMetadata
+                        $ref: '#/node-output/HTTP Invoke method/response'
+                      - variable: JSONParserParse
+                        $ref: '#/node-output/JSON Parser Parse/response/payload'
+                    mappings: []
+                  input:
+                    - variable: Request
+                      $ref: '#/trigger/payload'
+                    - variable: HTTPInvokemethod
+                      $ref: '#/node-output/HTTP Invoke method/response/payload'
+                    - variable: HTTPInvokemethodMetadata
+                      $ref: '#/node-output/HTTP Invoke method/response'
+                    - variable: JSONParserParse
+                      $ref: '#/node-output/JSON Parser Parse/response/payload'
+        tags:
+          - incomplete
+    assembly-2:
+      assembly:
+        execute: []
+  name: Retail_ProductQuery
+models:
+  product:
+    name: product
+    properties:
+      version:
+        required: false
+        id: true
+        type: number
+      getProductDet:
+        required: false
+        id: false
+        type:
+          productName:
+            required: false
+            id: false
+            type: string
+          productBrand:
+            required: false
+            id: false
+            type: string
+          cityCode:
+            required: false
+            id: false
+            type: number
+    plural: product
+    description: ' '
+    operations:
+      retrieveproducts: '#/integration/assemblies/assembly-1'
+    methods:
+      retrieveproducts:
+        name: retrieveProducts
+        display:
+          name: retrieveProducts
+        accessType: WRITE
+        accepts:
+          - arg: data
+            type: product
+            http:
+              source: body
+        returns:
+          arg: data
+          type: productResponse
+          root: true
+        http:
+          verb: POST
+          path: /retrieveProducts
+        description: retrieve all the products from the city code
+  productResponse:
+    name: productResponse
+    properties:
+      version:
+        required: false
+        id: true
+        type: number
+      productResponse:
+        required: false
+        id: false
+        type:
+          - type:
+              productName:
+                required: false
+                id: false
+                type: string
+              productBrand:
+                required: false
+                id: false
+                type: string
+              cityCode:
+                required: false
+                id: false
+                type: number
+              branchCode:
+                required: false
+                id: false
+                type: number
+              discountPercent:
+                required: false
+                id: false
+                type: number
+              priceBeforeDisc:
+                required: false
+                id: false
+                type: number
+              priceAfterDisc:
+                required: false
+                id: false
+                type: number
+              availableQty:
+                required: false
+                id: false
+                type: number
+    plural: productResponse
+    description: ' '
+    operations: {}

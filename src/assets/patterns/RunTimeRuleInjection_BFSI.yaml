@@ -1,0 +1,295 @@
+$integration: 'http://ibm.com/appconnect/integration/v2/integrationFile'
+integration:
+  type: api
+  trigger-interfaces:
+    trigger-interface-1:
+      triggers:
+        retrieveCreditScoreProxyApp:
+          assembly:
+            $ref: '#/integration/assemblies/assembly-1'
+          input-context:
+            data: CreditScoreProxyApp
+          output-context:
+            data: CreditScoreProxyApp
+      options:
+        resources:
+          - business-object: CreditScoreProxyApp
+            model:
+              $ref: '#/models/CreditScoreProxyApp'
+            triggers:
+              retrieve: retrieveCreditScoreProxyApp
+      type: api-trigger
+  action-interfaces:
+    action-interface-1:
+      type: api-action
+      business-object: request
+      connector-type: http
+      actions:
+        INVOKE: {}
+      account-name: Account 1
+  assemblies:
+    assembly-1:
+      assembly:
+        execute:
+          - custom-action:
+              name: HTTP Invoke method
+              target:
+                $ref: '#/integration/action-interfaces/action-interface-1'
+              action: INVOKE
+              map:
+                customSchemas: {}
+                mappings:
+                  - method:
+                      template: POST
+                  - requestBody:
+                      template: '{"getCreditScore":{"pan":{{$api.pan}}}}'
+                  - requestHeaders:
+                      expression: >-
+                        {"accept":"application/json","content-type":"application/json"}
+                  - url:
+                      template: >-
+                        http://getcreditscorestub-http-ace.cloud-integration-ocp45-6fb0b86391cd68c8282858623a1dddff-0000.eu-gb.containers.appdomain.cloud/api/creditscore
+                $map: 'http://ibm.com/appconnect/map/v1'
+                input:
+                  - variable: api
+                    $ref: '#/trigger/api/parameters'
+          - parse:
+              name: JSON Parser Parse
+              parse-format: json
+              source:
+                template: '{{$HTTPInvokemethod.responseBody}}'
+                input:
+                  - variable: api
+                    $ref: '#/trigger/api/parameters'
+                  - variable: HTTPInvokemethod
+                    $ref: '#/node-output/HTTP Invoke method/response/payload'
+                  - variable: HTTPInvokemethodMetadata
+                    $ref: '#/node-output/HTTP Invoke method/response'
+              sample-data: |-
+                {"creditScoreResponse": {
+                   "pan": "4567",
+                   "name": "Rob",
+                   "mobile": "9926438703",
+                   "loanAmount": "1500000",
+                   "blacklist": "Y",
+                   "creditScore": 149,
+                  "currentMonth": "December"
+                }}
+              output-schema:
+                $schema: 'http://json-schema.org/draft-04/schema#'
+                type: object
+                properties:
+                  creditScoreResponse:
+                    type: object
+                    properties:
+                      pan:
+                        type: string
+                      name:
+                        type: string
+                      mobile:
+                        type: string
+                      loanAmount:
+                        type: string
+                      blacklist:
+                        type: string
+                      creditScore:
+                        type: number
+                      currentMonth:
+                        type: string
+                title: Parsed JSON
+          - if:
+              name: If
+              input:
+                - variable: api
+                  $ref: '#/trigger/api/parameters'
+                - variable: HTTPInvokemethod
+                  $ref: '#/node-output/HTTP Invoke method/response/payload'
+                - variable: HTTPInvokemethodMetadata
+                  $ref: '#/node-output/HTTP Invoke method/response'
+                - variable: JSONParserParse
+                  $ref: '#/node-output/JSON Parser Parse/response/payload'
+              branch:
+                - condition:
+                    and:
+                      - '{{$JSONParserParse.creditScoreResponse.currentMonth}}': December
+                      - '{{$JSONParserParse.creditScoreResponse.creditScore}}':
+                          gte: '150'
+                  execute: []
+                  map:
+                    $map: 'http://ibm.com/appconnect/map/v1'
+                    input:
+                      - variable: api
+                        $ref: '#/trigger/api/parameters'
+                      - variable: HTTPInvokemethod
+                        $ref: '#/node-output/HTTP Invoke method/response/payload'
+                      - variable: HTTPInvokemethodMetadata
+                        $ref: '#/node-output/HTTP Invoke method/response'
+                      - variable: JSONParserParse
+                        $ref: '#/node-output/JSON Parser Parse/response/payload'
+                    mappings:
+                      - creditScoreResponse:
+                          mappings:
+                            - blacklist:
+                                template: 'N'
+                            - creditScore:
+                                expression: >-
+                                  $JSONParserParse.creditScoreResponse.creditScore 
+                            - loanAmount:
+                                template: >-
+                                  {{$JSONParserParse.creditScoreResponse.loanAmount}}
+                            - mobile:
+                                template: >-
+                                  {{$JSONParserParse.creditScoreResponse.mobile}}
+                            - name:
+                                template: '{{$JSONParserParse.creditScoreResponse.name}}'
+                            - pan:
+                                template: '{{$JSONParserParse.creditScoreResponse.pan}}'
+              else:
+                execute: []
+                map:
+                  $map: 'http://ibm.com/appconnect/map/v1'
+                  input:
+                    - variable: api
+                      $ref: '#/trigger/api/parameters'
+                    - variable: HTTPInvokemethod
+                      $ref: '#/node-output/HTTP Invoke method/response/payload'
+                    - variable: HTTPInvokemethodMetadata
+                      $ref: '#/node-output/HTTP Invoke method/response'
+                    - variable: JSONParserParse
+                      $ref: '#/node-output/JSON Parser Parse/response/payload'
+                  mappings:
+                    - creditScoreResponse:
+                        mappings:
+                          - blacklist:
+                              template: >-
+                                {{$JSONParserParse.creditScoreResponse.blacklist}}
+                          - creditScore:
+                              expression: >-
+                                $JSONParserParse.creditScoreResponse.creditScore 
+                          - loanAmount:
+                              template: >-
+                                {{$JSONParserParse.creditScoreResponse.loanAmount}}
+                          - mobile:
+                              template: '{{$JSONParserParse.creditScoreResponse.mobile}}'
+                          - name:
+                              template: '{{$JSONParserParse.creditScoreResponse.name}}'
+                          - pan:
+                              template: '{{$JSONParserParse.creditScoreResponse.pan}}'
+              output-schema:
+                type: object
+                properties:
+                  creditScoreResponse:
+                    type: object
+                    properties:
+                      pan:
+                        type: string
+                      name:
+                        type: string
+                      mobile:
+                        type: string
+                      loanAmount:
+                        type: string
+                      blacklist:
+                        type: string
+                      creditScore:
+                        type: number
+                    required: []
+                required:
+                  - creditScoreResponse
+          - response:
+              name: response-1
+              reply-maps:
+                - title: CreditScoreProxyApp successfully retrieved
+                  status-code: '200'
+                  map:
+                    $map: 'http://ibm.com/appconnect/map/v1'
+                    input:
+                      - variable: api
+                        $ref: '#/trigger/api/parameters'
+                      - variable: HTTPInvokemethod
+                        $ref: '#/node-output/HTTP Invoke method/response/payload'
+                      - variable: HTTPInvokemethodMetadata
+                        $ref: '#/node-output/HTTP Invoke method/response'
+                      - variable: JSONParserParse
+                        $ref: '#/node-output/JSON Parser Parse/response/payload'
+                      - variable: If
+                        $ref: '#/node-output/If/response/payload'
+                    mappings:
+                      - creditScoreResponse:
+                          mappings:
+                            - blacklist:
+                                template: '{{$If.creditScoreResponse.blacklist}}'
+                            - creditScore:
+                                expression: >-
+                                  $JSONParserParse.creditScoreResponse.creditScore 
+                            - loanAmount:
+                                template: >-
+                                  {{$JSONParserParse.creditScoreResponse.loanAmount}}
+                            - mobile:
+                                template: >-
+                                  {{$JSONParserParse.creditScoreResponse.mobile}}
+                            - name:
+                                template: '{{$JSONParserParse.creditScoreResponse.name}}'
+                            - pan:
+                                template: '{{$JSONParserParse.creditScoreResponse.pan}}'
+                  input:
+                    - variable: api
+                      $ref: '#/trigger/api/parameters'
+                    - variable: HTTPInvokemethod
+                      $ref: '#/node-output/HTTP Invoke method/response/payload'
+                    - variable: HTTPInvokemethodMetadata
+                      $ref: '#/node-output/HTTP Invoke method/response'
+                    - variable: JSONParserParse
+                      $ref: '#/node-output/JSON Parser Parse/response/payload'
+                    - variable: If
+                      $ref: '#/node-output/If/response/payload'
+  name: CreditScoreProxyApp
+models:
+  CreditScoreProxyApp:
+    name: CreditScoreProxyApp
+    properties:
+      pan:
+        required: false
+        id: true
+        type: string
+      fullName:
+        required: false
+        id: false
+        type: string
+      creditScoreResponse:
+        required: false
+        id: false
+        type:
+          pan:
+            required: false
+            id: false
+            type: string
+          name:
+            required: false
+            id: false
+            type: string
+          mobile:
+            required: false
+            id: false
+            type: string
+          loanAmount:
+            required: false
+            id: false
+            type: string
+          blacklist:
+            required: false
+            id: false
+            type: string
+          creditScore:
+            required: false
+            id: false
+            type: number
+          currentMonth:
+            required: false
+            id: false
+            type: string
+    plural: CreditScoreProxyApp
+    description: ' '
+    operations:
+      retrieve: '#/integration/assemblies/assembly-1'
+    interactions: {}
