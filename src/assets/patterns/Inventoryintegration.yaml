@@ -1,0 +1,104 @@
+$integration: 'http://ibm.com/appconnect/integration/v2/integrationFile'
+integration:
+  type: api
+  trigger-interfaces:
+    trigger-interface-1:
+      triggers:
+        retrieveInventoryConnection:
+          assembly:
+            $ref: '#/integration/assemblies/assembly-1'
+          input-context:
+            data: InventoryConnection
+          output-context:
+            data: InventoryConnection
+      options:
+        resources:
+          - business-object: InventoryConnection
+            model:
+              $ref: '#/models/InventoryConnection'
+            triggers:
+              retrieve: retrieveInventoryConnection
+      type: api-trigger
+  action-interfaces:
+    action-interface-1:
+      type: api-action
+      business-object: Supply
+      connector-type: ibmsterlingiv
+      actions:
+        RETRIEVEALL: {}
+    action-interface-2:
+      type: api-action
+      business-object: mhmessage
+      connector-type: messagehub
+      account-name: Account 3
+      actions:
+        CREATE: {}
+  assemblies:
+    assembly-1:
+      assembly:
+        execute:
+          - retrieve-action:
+              name: IBM Sterling Inventory Visibility Retrieve supplies
+              target:
+                $ref: '#/integration/action-interfaces/action-interface-1'
+          - for-each:
+              name: For each
+              assembly:
+                $ref: '#/integration/assemblies/assembly-2'
+              source:
+                expression: ''
+                input:
+                  - variable: api
+                    $ref: '#/trigger/api/parameters'
+              mode: sequential
+              continue-on-error: false
+              map:
+                $map: 'http://ibm.com/appconnect/map/v1'
+                input:
+                  - variable: Foreachitem
+                    $ref: '#/block/For each/current-item'
+                  - variable: api
+                    $ref: '#/trigger/api/parameters'
+                mappings: []
+          - response:
+              name: response-1
+              reply-maps:
+                - title: InventoryConnection successfully retrieved
+                  status-code: '200'
+                  map:
+                    $map: 'http://ibm.com/appconnect/map/v1'
+                    input:
+                      - variable: api
+                        $ref: '#/trigger/api/parameters'
+                      - variable: Foreach
+                        $ref: '#/node-output/For each/response/payload'
+                    mappings:
+                      - id:
+                          template: '{{$api.id}}'
+                  input:
+                    - variable: api
+                      $ref: '#/trigger/api/parameters'
+                    - variable: Foreach
+                      $ref: '#/node-output/For each/response/payload'
+        tags:
+          - incomplete
+    assembly-2:
+      assembly:
+        execute:
+          - create-action:
+              name: IBM Event Streams Send message
+              target:
+                $ref: '#/integration/action-interfaces/action-interface-2'
+  name: Inventoryintegration
+models:
+  InventoryConnection:
+    name: InventoryConnection
+    properties:
+      id:
+        required: false
+        id: true
+        type: string
+    plural: InventoryConnection
+    description: ' '
+    operations:
+      retrieve: '#/integration/assemblies/assembly-1'
